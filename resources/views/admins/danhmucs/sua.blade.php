@@ -14,8 +14,9 @@
         <!-- left column -->
         <div class="col-12">
 
-            <form action="{{ route('danhmucs.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('danhmucs.update',$danhMuc->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
@@ -27,12 +28,11 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="" class="form-label">Hình ảnh</label>
-                                            <input type="file" class="form-control" name="hinh_anh"
-                                                value="{{ $danhMuc->hinh_anh }}
-                                                onchange="showImage(event)">
+                                            <input type="file" class="form-control" name="hinh_anh" onchange="showImage(event)"
+                                                value="{{ $danhMuc->hinh_anh }}"">
                                         </div>
-                                        <img id="image_danh_muc" src="" alt="Hình ảnh danh mục"
-                                            style="width: 200px; display: none">
+                                        <img id="image_danh_muc" src="{{empty($danhMuc->hinh_anh)? ' ': Storage::url($danhMuc->hinh_anh) }}" alt="Hình ảnh danh mục"
+                                            style="width: 200px;">
                                         <div class="form-group">
                                             <label for="name">Tên danh mục</label>
                                             <input type="text" class="form-control" name="ten_danh_muc"

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class DanhMuc extends Model
+
 {
+    use SoftDeletes;
     use HasFactory ;
     protected $fillable = [
         'hinh_anh'
@@ -41,6 +43,15 @@ class DanhMuc extends Model
 
         return $danh_muc;
     }
+    // public function updateCategory($id, $params)
+    // {
+    //     DB::table('tb_danh_muc')->where('id', $id)->update($params);
+    // }
+    public function deleteCategory($id)
+    {
+        DB::table('tb_danh_muc')->where('id', $id)->delete();
+    }
+
 
 }
 

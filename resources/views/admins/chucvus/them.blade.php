@@ -14,36 +14,21 @@
         <!-- left column -->
         <div class="col-12">
 
-            <form action="{{ route('danhmucs.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('chucvus.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Thêm danh mục</h3>
+                                <h3 class="card-title">Thêm chức vụ</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="" class="form-label">Hình ảnh</label>
-                                            <input type="file" class="form-control" name="hinh_anh"
-                                                onchange="showImage(event)">
-                                        </div>
-                                        <img id="image_danh_muc" src="" alt="Hình ảnh danh mục"
-                                            style="width: 200px; display: none">
-                                        <div class="form-group">
-                                            <label for="name">Tên danh mục</label>
-                                            <input type="text"
-                                                class="form-control @error('ten_danh_muc') is-invalid @enderror"
-                                                name="ten_danh_muc" placeholder="Nhập tên sản phẩm" value="{{old('ten_danh_muc')}}">
-                                            @error('ten_danh_muc')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="description">Mô tả sản phẩm</label>
-                                            <textarea class="form-control" name="mo_ta" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
+                                            <label for="name">Tên chức vụ</label>
+                                            <input type="text" class="form-control" name="ten_chuc_vu"
+                                                placeholder="Nhập tên chức vụ">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Thêm mới</button>
                                     </div>

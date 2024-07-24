@@ -45,10 +45,29 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
 
-                <a href="" class="nav-link">
+                <a href="{{ route('danhmucs.index') }}" class="nav-link">
 
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL danh mục sản phẩm</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-circle"></i>
+              <p>
+                Chức vụ
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+
+                <a href="{{ route('chucvus.index') }}" class="nav-link">
+
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>QL chức vụ</p>
                 </a>
               </li>
             </ul>

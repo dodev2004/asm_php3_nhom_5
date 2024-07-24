@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admins;
 
-use App\Http\Controllers\Controller;
 use App\Models\DanhMuc;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\DanhMucRequest;
 
 
 class DanhMucController extends Controller
@@ -14,12 +16,18 @@ class DanhMucController extends Controller
     {
         $this->danh_muc = new DanhMuc();
     }
-    public function index()
+    public function index(Request $request)
     {
-
+        $listDanhMuc = DanhMuc::query();
+    
+        if($request->has('search')){
+            $listDanhMuc->where("ten_danh_muc","like","%".$request->get('search')."%");
+            
+        }
+        $listDanhMuc = $listDanhMuc->paginate(2);
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách danh mục";
-        $listDanhMuc = DanhMuc::get();
+        // $listDanhMuc = DanhMuc::get();
         return view('admins.danhmucs.danhsach', compact('title', 'listDanhMuc'));
     }
     public function create()
@@ -33,9 +41,10 @@ class DanhMucController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DanhMucRequest $request)
     {
         if ($request->isMethod('POST')) {
+
             $params = $request->except('_token');
 
             if ($request->hasFile('hinh_anh')) {
@@ -53,9 +62,7 @@ class DanhMucController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -70,16 +77,62 @@ class DanhMucController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DanhMucRequest $request, string $id)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $params = $request->except('_token', '_method');
+
+            $danhMuc = DanhMuc::findOrFail($id);
+
+            //sử dụng querybulder
+            // $danhMuc = $this->danh_muc->getDetailCategory($id);
+            //xử lý hình ảnh
+
+
+            if ($request->hasFile('hinh_anh')) {
+                // nếu có đẩy hình ảnh mới thì xóa ảnh cũ và lấy ảnh mới để thêm vào dữ liệu DB
+                if ($danhMuc->hinh_anh) {
+                    Storage::disk('public')->delete($danhMuc->hinh_anh);
+                }
+                $params['hinh_anh'] = $request->file('hinh_anh')->store('public/uploads/danhmucs');
+            } else {
+                $params['hinh_anh'] = $danhMuc->hinh_anh;
+            }
+
+            //xử lý cập nhật thông tin
+            //eloquent
+            $danhMuc->update($params);
+            return redirect()->route('danhmucs.index')->with('success', 'Cập nhật danh mục thành công!');
+
+            //querybulder
+            // $this->danh_muc->updateCategory($id, $params);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        if ($request->isMethod('DELETE')) {
+            
+            // $danhMuc = $this->danh_muc->getDetailCategory($id);
+            // if ($danhMuc) {
+            //     //xóa bằng query builder
+            //     $this->danh_muc->deleteCategory($id);
+            //     //xóa hình ảnh sau khi xóa sản phẩm
+            //     if ($danhMuc->hinh_anh && Storage::disk('public')->exists($danhMuc->hinh_anh)) {
+            //         Storage::disk('public')->delete($danhMuc->hinh_anh);
+            //     }
+            //     return redirect()->route('danhmucs.index')->with('success', 'Xóa danh mục thành công!');
+            // }
+
+            $danhMuc = DanhMuc::query()->findOrFail($id);
+            $danhMuc->delete();
+            if ($danhMuc->hinh_anh && Storage::disk('public')->exists($danhMuc->hinh_anh)) {
+                        Storage::disk('public')->delete($danhMuc->hinh_anh);
+                    }
+                    return redirect()->route('danhmucs.index')->with('success', 'Xóa danh mục thành công!');
+        }
     }
 }

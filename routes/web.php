@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\Admins\DanhMucController;
+
 
 
 /*
@@ -16,5 +18,5 @@ use App\Http\Controllers\Admins\DanhMucController;
 */
 
 Route::resource('danhmucs', DanhMucController::class);
-
+Route::resource('chucvus', ChucVuController::class);
 
