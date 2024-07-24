@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\DonHangController;
+use App\Http\Controllers\admins\PtttController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
@@ -17,5 +20,15 @@ Route::prefix("admin")->name("admin.")->group(function(){
     Route::resource("sanpham",SanPhamController::class);
     Route::resource("taikhoan",taikhoanController::class);
 });
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::resource('/danhsach',SanPhamController::class);
+// Route::resource('/danhmuc',DanhMucController::class);
+// Route::resource('/taikhoan',TaiKhoanController::class);
+Route::resource('/pttt',PtttController::class);
+Route::resource('/donhang',DonHangController::class);
 
 

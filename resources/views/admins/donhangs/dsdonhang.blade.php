@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section("title")
-
+{{$title}}
 @endsection
 @section('head')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -18,64 +18,63 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-            @session('message')
-            <div class="alert alert-success">
-                        {{session('message')}}
-            </div>
-            @endsession
-            
-          <h3 class="card-title">Danh sách sản phẩm</h3>
+          <h3 class="card-title">{{$tablename}}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <a class="btn btn-primary" href="{{route("admin.sanpham.create")}}">Thêm mới sản phẩm</a>
+          {{-- <a class="btn btn-primary" href="">Thêm mới sản phẩm</a> --}}
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th></th>
-              <th>Tên sản phẩm</th>
-              <th>Mô tả</th>
-              <th>Gía sản phẩm</th>
+              <th>Mã đơn hàng</th>
+              <th>Id người dùng</th>
+              <th>Ten nguoi nhan</th>
              
-              <th>Danh mục</th>
-              <th>Ngày nhập</th>
-              <th>Trạng thái</th>
-              <th>Hành động</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Địa chỉ</th>
+              <th>Ngày đặt</th>      
+              <th>Tổng tiền</th>      
+              <th>Ghi chú</th>      
+              <th>P.thức thanh toán</th>      
+              <th>Trạng thái</th>      
+              <th>Hành động</th>      
             </tr>
             </thead>
             <tbody>
-                @foreach($data as $sanpham)
-                <tr>
-                    <td><input type="checkbox" value="{{$sanpham["id"]}}"></td>
-                    <td>
-                      <p class="mb-0">{{ $sanpham["ten_san_pham"]}}</p>
-                      <span>Số lượng : <strong>{{ $sanpham["so_luong"] }}</strong></span>
-      
-                    </td>
-                    <td>{{ $sanpham["mo_ta"] }}</td>
-                    <td>
-                      <p class="mb-0">Giá sp : {{ number_format($sanpham["gia_san_pham"],0,".","."). " đ" }}</p>
-                      
-                    </td>
-                    <td>{{ $sanpham["ngay_nhap"] }}</td>
-                    <td>{{ $sanpham["ten_danh_muc"] }}</td>
-                    <td>{{ $sanpham["trang_thai"]  ? "Kích hoạt" :  "Không kích hoạt" }}</td>
-                    <td>
-                    <div style="display:flex; column-gap:5px">   
-                        <a href="{{route("admin.sanpham.edit",$sanpham["id"])}}" class="btn btn-info">Sửa</a>
-                      <form action="{{route("admin.sanpham.destroy",$sanpham["id"])}}" onsubmit='return confirm("Bạn chắc chắn muốn xóa chứ")' method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <button class=" btn btn-warning">Xóa</button>
-                      </form>
-                    </div>
-                      
-                     
-                    </td>
-                </tr>
-             @endforeach
+              {{-- {{$dsDonHang}} --}}
+              @foreach ($dsDonHang as $index=>$item)
+              <td><input type="checkbox"></td>
+              <td>
+                <p class="mb-0">{{$item->ma_don_hang}}</p>
+               
+              </td>
+              <td>{{$item->nguoi_dung_id}}</td>
+              <td>
+                <p >{{$item->ten_nguoi_nhan}}</p>
+                
+              </td>
+              <td>{{$item->email_nguoi_nhan}}</td>
+              <td>{{$item->so_dien_thoai_nguoi_nhan}}</td>
+              
+              <td>{{$item->dia_chi_nguoi_nhan}}</td>
+              <td>{{$item->ngay_dat}}</td>
+              <td>{{$item->tong_tien}}</td>
+              <td>{{$item->ghi_chu}}</td>
+              <td>{{$item->ten_phuong_thuc}}</td>
+              <td>{{$item->ten_trang_thai}}</td>
+              
+              <td>
+                <a href="{{route('donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                {{-- <a href="" class="btn btn-warning">Xóa</a> --}}
+              </td>
+           
+            
+              
+
             </tbody>
-          
+            @endforeach
           </table>
         </div>
         <!-- /.card-body -->

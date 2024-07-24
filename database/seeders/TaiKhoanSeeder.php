@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+
 class TaiKhoanSeeder extends Seeder
 {
     /**
@@ -24,6 +26,7 @@ class TaiKhoanSeeder extends Seeder
                 "dia_chi" => "12345 ABC Street",
                 "ngay_sinh" => "1990-01-01",
             ],
+
         ]);
     }
 }
