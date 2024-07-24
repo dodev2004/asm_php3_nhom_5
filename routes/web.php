@@ -22,9 +22,9 @@ use App\Http\Controllers\admins\TaiKhoanController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('/danhsach',SanPhamController::class);
-Route::resource('/danhmuc',DanhMucController::class);
-Route::resource('/taikhoan',TaiKhoanController::class);
+// Route::resource('/danhsach',SanPhamController::class);
+// Route::resource('/danhmuc',DanhMucController::class);
+// Route::resource('/taikhoan',TaiKhoanController::class);
 Route::resource('/pttt',PtttController::class);
 Route::resource('/donhang',DonHangController::class);
 

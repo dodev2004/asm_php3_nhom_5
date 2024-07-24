@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
@@ -10,11 +11,17 @@ class SanPhamController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public $san_pham;
+    public function __construct()
+    {
+        $this->san_pham= new SanPham();
+    }
     public function index()
     {
-        $title = "Quản lý sản phẩm - danh sách sản phẩm";
-        $tablename = "Danh sách sản phẩm";
-      
+     $title = "Quản lý sản phẩm - danh sách sản phẩm";
+        $tablename = "Danh sách sản phẩm";   
+        $listSanPham = $this->san_pham->getList();
+      return view('admins.sanphams.danhsach',compact('title','tablename','listSanPham'));
     }
 
     /**
