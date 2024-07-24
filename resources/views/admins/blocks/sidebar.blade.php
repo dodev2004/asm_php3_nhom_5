@@ -61,18 +61,15 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
+              <p>
                 Tài khoản
 
                 <i class="right fas fa-angle-left"></i>
               </p>
+               
+            
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>QL chuyên mục</p>
-                </a>
-              </li>
               <li class="nav-item ">
                 <a href="{{route("admin.taikhoan.index")}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -96,13 +93,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('donhang.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL danh sách đơn hàng</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('pttt.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL phương thức thanh toán</p>
 
