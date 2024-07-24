@@ -84,11 +84,6 @@ class DanhMucController extends Controller
 
             $danhMuc = DanhMuc::findOrFail($id);
 
-            //sử dụng querybulder
-            // $danhMuc = $this->danh_muc->getDetailCategory($id);
-            //xử lý hình ảnh
-
-
             if ($request->hasFile('hinh_anh')) {
                 // nếu có đẩy hình ảnh mới thì xóa ảnh cũ và lấy ảnh mới để thêm vào dữ liệu DB
                 if ($danhMuc->hinh_anh) {
@@ -115,17 +110,6 @@ class DanhMucController extends Controller
     public function destroy(Request $request, string $id)
     {
         if ($request->isMethod('DELETE')) {
-            
-            // $danhMuc = $this->danh_muc->getDetailCategory($id);
-            // if ($danhMuc) {
-            //     //xóa bằng query builder
-            //     $this->danh_muc->deleteCategory($id);
-            //     //xóa hình ảnh sau khi xóa sản phẩm
-            //     if ($danhMuc->hinh_anh && Storage::disk('public')->exists($danhMuc->hinh_anh)) {
-            //         Storage::disk('public')->delete($danhMuc->hinh_anh);
-            //     }
-            //     return redirect()->route('danhmucs.index')->with('success', 'Xóa danh mục thành công!');
-            // }
 
             $danhMuc = DanhMuc::query()->findOrFail($id);
             $danhMuc->delete();

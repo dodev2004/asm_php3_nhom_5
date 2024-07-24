@@ -46,4 +46,25 @@ class ChucVuController extends Controller
         $chucVu = $this->chuc_vu->getDetailPosition($id);
         return view('admins.chucvus.sua', compact('title', 'chucVu'));
     }
+    public function update(Request $request, string $id)
+    {
+        if ($request->isMethod('PUT')) {
+            $params = $request->except('_token', '_method');
+            $chucVu = ChucVu::findOrFail($id);
+            $chucVu->update($params);
+            return redirect()->route('chucvus.index')->with('success', 'Cập nhật thành công!');
+        }
+    }
+    
+    public function destroy(Request $request, string $id)
+    {
+        if ($request->isMethod('DELETE')) {
+
+            $chucVu = ChucVu::query()->findOrFail($id);
+            $chucVu->delete();
+            
+                    return redirect()->route('chucvus.index')->with('success', 'Xóa thành công!');
+        }
+    }
+    
 }

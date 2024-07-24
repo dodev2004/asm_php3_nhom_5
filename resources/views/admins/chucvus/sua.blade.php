@@ -14,8 +14,9 @@
         <!-- left column -->
         <div class="col-12">
 
-            <form action="{{ route('chucvus.store') }}" method="POST">
+            <form action="{{ route('chucvus.update',$chucVu->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">

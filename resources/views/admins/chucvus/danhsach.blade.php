@@ -41,7 +41,13 @@
                     <td>{{$chucVu->ten_chuc_vu}}</td>
                     <td>
                         <a href="{{ route('chucvus.edit', $chucVu->id) }}" class="btn btn-info">Sửa</a>
-                        <a href="" class="btn btn-warning">Xóa</a>
+                        <form action="{{ route('chucvus.destroy', $chucVu->id) }}" method="POST" class="d-inline" onSubmit="return confirm('Bạn có muốn xóa không')">
+                            
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Xóa</button>
+                        </form>
+                        
                     </td>
                 </tr>
                 @endforeach
