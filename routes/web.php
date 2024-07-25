@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\admins\DanhMucController;
+use App\Http\Controllers\admins\DonHangController;
+use App\Http\Controllers\admins\PtttController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admins\DanhMucController;
-
-
+use App\Http\Controllers\admins\SanPhamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,8 @@ use App\Http\Controllers\Admins\DanhMucController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::resource('danhmucs', DanhMucController::class);
+Route::prefix("admin")->name("admin.")->group(function(){
+    Route::resource("sanpham",SanPhamController::class);
+});
 
 
