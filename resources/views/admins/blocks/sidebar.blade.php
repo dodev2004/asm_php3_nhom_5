@@ -57,11 +57,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
-<<<<<<< HEAD
-                Chức vụ
-=======
                 Tài khoản
-
                 <i class="right fas fa-angle-left"></i>
               </p>
                
@@ -72,10 +68,11 @@
                 <a href="{{route("admin.taikhoan.index")}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL tài khoản</p>
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>QL danh sách tài khoản</p>
-                </a>
+                  <a href="{{ route('chucvus.index') }}" class="nav-link">
+
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>QL chức vụ</p>
+                  </a>
               </li>
            
              
@@ -86,21 +83,15 @@
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Đơn hàng
->>>>>>> main
+
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-<<<<<<< HEAD
-
-                <a href="{{ route('chucvus.index') }}" class="nav-link">
-
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>QL chức vụ</p>
-                </a>
+                
               </li>
-=======
+
                 <a href="{{route('donhang.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL danh sách đơn hàng</p>
@@ -114,7 +105,7 @@
                 </a>
               </li>
              
->>>>>>> main
+
             </ul>
           </li>
          
