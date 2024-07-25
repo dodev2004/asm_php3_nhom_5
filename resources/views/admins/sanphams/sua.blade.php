@@ -105,7 +105,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group text-center">
                                         <label class="" style="cursor: pointer; width: 200px; height: 200px;" for="avatar">
-                                            <img style="width: 100%; height: 100%; object-fit: scale-down;" class="render_image" src="{{ $data->hinh_anh ?? 'https://static.vecteezy.com/system/resources/previews/004/141/669/original/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg' }}" alt="">
+                                            <img style="width: 100%; height: 100%; object-fit: scale-down;" class="render_image" src="{{  $data->hinh_anh ? asset("storage/uploads/sanphams/". "$data->hinh_anh" ) : 'https://static.vecteezy.com/system/resources/previews/004/141/669/original/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg' }}" alt="">
                                         </label>
                                         <input type="file"  id="avatar" name="hinh_anh" style="display: none;" onchange="handleCustomImage(event)">
                                     </div>
