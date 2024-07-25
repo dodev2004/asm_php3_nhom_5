@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TaiKhoan;
+use Illuminate\Support\Facades\Storage;
 class TaiKhoanController extends Controller
 {
     /**
@@ -20,7 +21,7 @@ class TaiKhoanController extends Controller
     {
         $title = "Quản lý tài khoản - danh sách tài khoản";
         $tablename = "Danh tài khoản";
-        $data = $this->model->getAllTaiKhoan();
+        $data = TaiKhoan::get();
     
        return view("admins.taikhoans.danhsach", compact("title", "tablename","data"));
     }
@@ -82,7 +83,11 @@ class TaiKhoanController extends Controller
     {
         if($request->isMethod("PUT")){
            $data = $request->except("_token","_method");
+           $taikhoan = TaiKhoan::find($id);
             if($request->hasFile("anh_dai_dien")){
+                if($taikhoan->anh_dai_dien && Storage::disk("public")->exists("uploads/taikhoan/".$taikhoan->anh_dai_dien)){
+                    Storage::disk("public")->delete("uploads/taikhoan/".$taikhoan->anh_dai_dien);  // Xóa file c�� đi để đ��i ảnh mới
+                }
                 $file = $request->file("anh_dai_dien");
                 $filename = time(). "_".$file->getClientOriginalName();
                 $file->storeAs("public/uploads/taikhoan",$filename);
@@ -99,6 +104,11 @@ class TaiKhoanController extends Controller
      */
     public function destroy(string $id)
     {
+        $taikhoan = TaiKhoan::find($id);
+        dd($taikhoan);
+        if($taikhoan->anh_dai_dien && Storage::disk("public")->exists("uploads/taikhoan/".$taikhoan->anh_dai_dien)){
+            Storage::disk("public")->delete("uploads/taikhoan/".$taikhoan->anh_dai_dien);  // Xóa file c�� đi để đ��i ảnh mới
+        }
         $this->model->xoaTaiKhoan($id);
         return redirect()->route("admin.taikhoan.index")->with("message","Xóa sản phẩm thành công");
         

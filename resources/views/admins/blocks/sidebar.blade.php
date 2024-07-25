@@ -44,18 +44,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('admin.sanpham.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>QL Sản phẩm</p>
+                </a>
+                <a href="{{ route('admin.danhmucs.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL danh mục sản phẩm</p>
                 </a>
               </li>
-              <li class="nav-item ">
-                <a href="{{route("admin.sanpham.index")}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>QL sản phẩm</p>
-                </a>
-              </li>
-             
             </ul>
           </li>
           <li class="nav-item">
@@ -71,15 +68,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item ">
+                <a href="{{ route('admin.chucvus.index') }}" class="nav-link">
+
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>QL chức vụ</p>
+                </a>
                 <a href="{{route("admin.taikhoan.index")}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL tài khoản</p>
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>QL danh sách tài khoản</p>
                 </a>
               </li>
-           
+             
              
             </ul>
           </li>
@@ -88,10 +87,12 @@
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Đơn hàng
+
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+             
               <li class="nav-item">
                 <a href="{{route('admin.donhang.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -105,7 +106,6 @@
 
                 </a>
               </li>
-        
             </ul>
           </li>
           <li class="nav-item">

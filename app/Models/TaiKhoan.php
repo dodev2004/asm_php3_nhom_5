@@ -14,6 +14,7 @@ class TaiKhoan extends Authenticatable
     const role_admin = 1;
     const role_user = 2;
     protected $table = 'tb_tai_khoan';
+
     protected $fillable = [
         'anh_dai_dien',
         'ho_ten',
