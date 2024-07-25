@@ -6,6 +6,11 @@ use App\Http\Controllers\admins\PtttController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\TaiKhoanController;
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckRoleAdminMiddleware;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,19 +21,29 @@ use App\Http\Controllers\admins\TaiKhoanController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::prefix("admin")->name("admin.")->group(function(){
-    Route::resource("sanpham",SanPhamController::class);
-    Route::resource("taikhoan",taikhoanController::class);
-});
+
+
 
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+Route::middleware(['auth',CheckRoleAdminMiddleware::class])->prefix("admin")->name("admin.")->group(function () {
+    Route::resource("sanpham", SanPhamController::class);
+    Route::resource("taikhoan", taikhoanController::class);
+    Route::resource('pttt', PtttController::class);
+    Route::resource('donhang', DonHangController::class);
 });
 // Route::resource('/danhsach',SanPhamController::class);
 // Route::resource('/danhmuc',DanhMucController::class);
 // Route::resource('/taikhoan',TaiKhoanController::class);
-Route::resource('/pttt',PtttController::class);
-Route::resource('/donhang',DonHangController::class);
+// Route::resource('/pttt',PtttController::class);
+// Route::resource('/donhang',DonHangController::class);
 
+Route::get('login', [AuthController::class, 'showFormLogin']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'showFormRegister']);
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+//admin
 

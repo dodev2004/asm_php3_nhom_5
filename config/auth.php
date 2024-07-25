@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'mat_khau' => 'tb_tai_khoan',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'tb_tai_khoan',
         ],
     ],
 
@@ -59,17 +59,12 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+   'providers' => [
+    'tb_tai_khoan' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\TaiKhoan::class,
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -91,8 +86,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'tb_tai_khoan' => [
+            'provider' => 'tb_tai_khoan',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

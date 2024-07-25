@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('dia_chi')->nullable();
             $table->date('ngay_sinh')->nullable();
             $table->string('mat_khau');
-            $table->unsignedBigInteger('chuc_vu_id');
+            $table->unsignedBigInteger('chuc_vu_id')->default(2);
             $table->boolean('trang_thai')->default(1);
             $table->timestamps();
            
