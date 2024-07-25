@@ -25,6 +25,7 @@ Route::resource('danhmucs', DanhMucController::class);
 
 Route::prefix("admin")->name("admin.")->group(function(){
     Route::resource("sanpham",SanPhamController::class);
+    Route::resource("taikhoan",taikhoanController::class);
 });
 
 Route::prefix('/')->name("client.")->group(function(){
