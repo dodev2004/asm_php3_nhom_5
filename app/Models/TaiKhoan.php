@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class TaiKhoan extends Model
+class TaiKhoan extends Authenticatable
 {
     use HasFactory , SoftDeletes;
     protected $fillable = [
@@ -53,4 +54,8 @@ class TaiKhoan extends Model
      protected $casts = [
         'mat_khau' => 'hashed',
     ];
+    public function getAuthPassword()
+    {
+        return $this->mat_khau;
+    }
 }

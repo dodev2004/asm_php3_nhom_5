@@ -21,4 +21,5 @@ Route::prefix("admin")->name("admin.")->group(function(){
 Route::prefix('/')->name("client.")->group(function(){
    Route::get("/trang-chu",[HomeController::class,"index"]);
 });
+Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
 

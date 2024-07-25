@@ -22,7 +22,7 @@ class TaiKhoanController extends Controller
         $title = "Quản lý tài khoản - danh sách tài khoản";
         $tablename = "Danh tài khoản";
         $data = TaiKhoan::get();
-    
+
        return view("admins.taikhoans.danhsach", compact("title", "tablename","data"));
     }
 
@@ -113,4 +113,5 @@ class TaiKhoanController extends Controller
         return redirect()->route("admin.taikhoan.index")->with("message","Xóa sản phẩm thành công");
         
     }
+   
 }

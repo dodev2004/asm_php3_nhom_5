@@ -45,7 +45,7 @@
   @include('clients.blocks.footer')
 
   <!-- Customer Login Form -->
-  @include("clients.blocks.login")
+
 
 
   <!-- Cart Drawer -->
@@ -57,9 +57,12 @@
   <!-- Page Overlay -->
   <div class="page-overlay"></div><!-- /.page-overlay -->
 
-
-  <!-- External JavaScripts -->
   <script src="{{asset('clients/js/plugins/jquery.min.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- External JavaScripts -->
+  @if(!Auth::check())
+  @include("clients.blocks.login")
+  @endif
   <script src="{{asset('clients/js/plugins/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('clients/js/plugins/bootstrap-slider.min.js')}}"></script>
   
