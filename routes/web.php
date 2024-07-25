@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admins\ChucVuController;
-use App\Http\Controllers\Admins\DanhMucController;
 
+use App\Http\Controllers\admins\DonHangController;
+use App\Http\Controllers\admins\PtttController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admins\DanhMucController;
+use App\Http\Controllers\admins\SanPhamController;
 
 
 /*
@@ -18,5 +20,7 @@ use App\Http\Controllers\Admins\DanhMucController;
 */
 
 Route::resource('danhmucs', DanhMucController::class);
-Route::resource('chucvus', ChucVuController::class);
 
+Route::prefix("admin")->name("admin.")->group(function(){
+    Route::resource("sanpham",SanPhamController::class);
+});
