@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'email'=>'required|email|string',
             'ho_ten'=>'required|max:255|string',
-'mat_khau'=>'required',
+            'mat_khau'=>'required',
         ];
     }
     public function messages(): array

@@ -45,8 +45,8 @@ public function login(LoginRequest $request)
    {
    
     $data = $request->except('_token');
-
-$data['mat_khau'] = Hash::make($data['mat_khau']);
+    $data['mat_khau'] = Hash::make($data['mat_khau']);
+    $data['chuc_vu_id'] = 1; // Chức vụ admin mặc đ��nh
 
    $user = TaiKhoan::query()->create($data);
 //    Auth::login($user);
