@@ -14,8 +14,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckRoleAdminMiddleware;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
-
-
+use App\Http\Controllers\clients\SanPhamController as ClientSanPham;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +50,10 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/')->name("client.")->group(function(){
    Route::get("/trang-chu",[HomeController::class,"index"]);
+   Route::get("/san-pham-chi-tiet/{id}",[ClientSanPham::class,"sanphamchitiet"])->name("sanphamchitiet");   
 });
+Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
+Route::post("/client/register",[HomeController::class,"register"])->name("client.register");
 
 
 

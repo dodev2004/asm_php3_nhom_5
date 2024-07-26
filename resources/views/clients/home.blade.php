@@ -186,7 +186,7 @@ data-settings='{
             @foreach($sp_yeu_thich as $sp)
             <div class="swiper-slide product-card product-card_style3">
               <div class="pc__img-wrapper border-radius-0">
-                <a href="product1_simple.html">
+                <a href="{{route('client.sanphamchitiet',$sp->id)}}">
                   <img loading="lazy" src="{{asset('storage/uploads/sanphams/'.$sp->hinh_anh)}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                 </a>
               </div>
@@ -1436,114 +1436,7 @@ data-settings='{
 
 <div class="mb-4 pb-4 mb-xl-4 mt-xl-3 pt-xl-3 pb-xl-4"></div>
 
-<section class="lookbook-container container">
-<h2 class="section-title fw-normal mb-3 pb-2 mb-xl-4">Featured Products</h2>
 
-<div class="row">
-  <div class="col-lg-7">
-    <div class="lookbook-products position-relative">
-      <img loading="lazy" class="h-auto" src="{{asset('storage/clients/images/home/demo10/lookbook-bg.jpg')}}" width="770" height="750" alt="">
-      <button class="popover-point type3 position-absolute" style="left: 28%; top: 17%;" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content='
-        <div class="popover-product">
-          <a href="product1_simple.html">
-            <img loading="lazy" class="mb-3" src="{{asset('storage/clients/images/home/demo10/product-5-1.jpg')}}" alt="">
-          </a>
-          <p class="fw-medium mb-0"><a href="product1_simple.html">Cableknit Shawl</a></p>
-          <p class="mb-0">$129</p>
-        </div>
-      '><span></span></button>
-      <button class="popover-point type3 position-absolute" style="left: 28%; top: 44%;" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content='
-        <div class="popover-product">
-          <a href="product1_simple.html">
-            <img loading="lazy" class="mb-3" src="{{asset('storage/clients/images/home/demo10/product-5-1.jpg')}}" alt="">
-          </a>
-          <p class="fw-medium mb-0"><a href="product1_simple.html">Cableknit Shawl</a></p>
-          <p class="mb-0">$129</p>
-        </div>
-      '><span></span></button>
-      <button class="popover-point type3 position-absolute" style="left: 44%; top: 71%;" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content='
-        <div class="popover-product">
-          <a href="product1_simple.html">
-            <img loading="lazy" class="mb-3" src="{{asset('storage/clients/images/home/demo10/product-5-1.jpg')}}" alt="">
-          </a>
-          <p class="fw-medium mb-0"><a href="product1_simple.html">Cableknit Shawl</a></p>
-          <p class="mb-0">$129</p>
-        </div>
-      '><span></span></button>
-    </div>
-  </div>
-  <div class="col-lg-5 py-4 py-xl-5 d-flex align-items-center">
-    <div class="w-100">
-      <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-7">
-          <div class="position-relative">
-            <div class="swiper-container js-swiper-slider"
-              data-settings='{
-                "slidesPerView": 1,
-                "slidesPerGroup": 1,
-                "effect": "none",
-                "loop": true,
-                "pagination": {
-                  "el": ".lookbook-container .slideshow-pagination",
-                  "type": "bullets",
-                  "clickable": true
-                }
-              }'>
-              <div class="swiper-wrapper">
-                <div class="swiper-slide product-card">
-                  <div class="pc__img-wrapper">
-                    <a href="product1_simple.html">
-                      <img loading="lazy" src="{{asset('storage/clients/images/home/demo10/product-5-1.jpg')}}" width="320" height="388" alt="Cropped Faux leather Jacket" class="pc__img">
-                    </a>
-                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                  </div>
-    
-                  <div class="pc__info position-relative">
-                    <p class="pc__category text-uppercase">Hummel</p>
-                    <h6 class="pc__title mb-2"><a href="product1_simple.html">Cableknit Shawl</a></h6>
-                    <div class="product-card__price d-flex">
-                      <span class="money price price-old">$129</span>
-                      <span class="money price price-sale">$99</span>
-                    </div>
-
-                    <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="swiper-slide product-card">
-                  <div class="pc__img-wrapper">
-                    <a href="product1_simple.html">
-                      <img loading="lazy" src="{{asset('storage/clients/images/home/demo10/product-5-1.jpg')}}" width="320" height="388" alt="Cropped Faux leather Jacket" class="pc__img">
-                    </a>
-                    <button class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium js-add-cart js-open-aside" data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
-                  </div>
-    
-                  <div class="pc__info position-relative">
-                    <p class="pc__category text-uppercase">Hummel</p>
-                    <h6 class="pc__title mb-2"><a href="product1_simple.html">Cableknit Shawl</a></h6>
-                    <div class="product-card__price d-flex">
-                      <span class="money price price-old">$129</span>
-                      <span class="money price price-sale">$99</span>
-                    </div>
-
-                    <button class="pc__btn-wl position-absolute top-0 end-0 bg-transparent border-0 js-add-wishlist" title="Add To Wishlist">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>
-                    </button>
-                  </div>
-                </div>
-              </div><!-- /.swiper-wrapper -->
-            </div><!-- /.swiper-container js-swiper-slider -->
-
-            <div class="slideshow-pagination position-right-center position-right-2"></div>
-          </div><!-- /.position-relative -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
 
 <div class="mb-4 pb-4 mb-xl-4 mt-xl-3 pt-xl-3 pb-xl-4"></div>
 
@@ -1969,8 +1862,8 @@ data-settings='{
                   </div>
                 </details>
               </share-button>
-              <script src="js/details-disclosure.js" defer="defer"></script>
-              <script src="js/share.js" defer="defer"></script>
+              <script src="{{asset('clients/js/details-disclosure.js')}}" defer="defer"></script>
+              <script src="{{asset('clients/js/share.js')}}" defer="defer"></script>
             </div>
             <div class="product-single__meta-info mb-0">
               <div class="meta-item">
@@ -1979,7 +1872,7 @@ data-settings='{
               </div>
               <div class="meta-item">
                 <label>Categories:</label>
-                <span>Casual & Urban Wear, Jackets, Men</span>
+                <span>{{$sp->danhmucs->ten_danh_muc}}</span>
               </div>
               
             </div>

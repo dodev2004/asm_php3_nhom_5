@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Notifications\Notifiable;
-// use Laravel\Sanctum\HasApiTokens;
+// use Laravel\Sanctum\HasApiTok    ens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TaiKhoan extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,SoftDeletes;
     const role_admin = 1;
     const role_user = 2;
     protected $table = 'tb_tai_khoan';
@@ -70,4 +72,5 @@ class TaiKhoan extends Authenticatable
      {
          return $this->mat_khau;
      }
+
 }
