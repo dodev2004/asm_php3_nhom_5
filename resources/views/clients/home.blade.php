@@ -186,7 +186,7 @@ data-settings='{
             @foreach($sp_yeu_thich as $sp)
             <div class="swiper-slide product-card product-card_style3">
               <div class="pc__img-wrapper border-radius-0">
-                <a href="product1_simple.html">
+                <a href="{{route('client  .sanphamchitiet',$sp->id)}}">
                   <img loading="lazy" src="{{asset('storage/uploads/sanphams/'.$sp->hinh_anh)}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                 </a>
               </div>
@@ -1862,8 +1862,8 @@ data-settings='{
                   </div>
                 </details>
               </share-button>
-              <script src="js/details-disclosure.js" defer="defer"></script>
-              <script src="js/share.js" defer="defer"></script>
+              <script src="{{asset('clients/js/details-disclosure.js')}}" defer="defer"></script>
+              <script src="{{asset('clients/js/share.js')}}" defer="defer"></script>
             </div>
             <div class="product-single__meta-info mb-0">
               <div class="meta-item">
@@ -1872,7 +1872,7 @@ data-settings='{
               </div>
               <div class="meta-item">
                 <label>Categories:</label>
-                <span>Casual & Urban Wear, Jackets, Men</span>
+                <span>{{$sp->danhmucs->ten_danh_muc}}</span>
               </div>
               
             </div>

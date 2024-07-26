@@ -17,9 +17,8 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="{{asset('clients/css/plugins/swiper.min.css')}}" type="text/css">
   <link rel="stylesheet" href="{{asset('clients/css/plugins/jquery.fancybox.css')}}" type="text/css">
-  <link rel="stylesheet" href="{{asset('clients/css/style.css')}}" type="text/css">
-
-
+  <link rel="stylesheet" href="{{asset('clients/css/style.css')}}" type="text/css"> 
+  @yield("style")
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if lt IE 9]>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

@@ -38,23 +38,25 @@
 
                 <div class="customer-option mt-4 text-center">
                     <span class="text-secondary">No account yet?</span>
-                    <a href="login_register.html#register-tab" class="btn-text js-show-register">Create Account</a>
+                    <a href="#" class="btn-text js-show-register">Create Account</a>
                 </div>
             </form>
         </div><!-- /.customer__login -->
 
         <div class="customer__register">
+         
             <div class="aside-header d-flex align-items-center">
                 <h3 class="text-uppercase fs-6 mb-0">Create an account</h3>
                 <button class="btn-close-lg js-close-aside btn-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="https://uomo-html.flexkitux.com/Demo10/login_register.html" method="POST"
-                class="aside-content">
+            <form action="" class="aside-content aside-form_register" method="POST">
+                @csrf
                 <div class="form-floating mb-4">
-                    <input name="username" type="text" class="form-control form-control_gray"
+                    <input name="ho_ten" type="text" class="form-control form-control_gray"
                         id="registerUserNameInput" placeholder="Username">
                     <label for="registerUserNameInput">Username</label>
+                    <p class="text-danger message"></p>
                 </div>
 
                 <div class="pb-1"></div>
@@ -63,14 +65,16 @@
                     <input name="email" type="email" class="form-control form-control_gray"
                         id="registerUserEmailInput" placeholder="user@company.com">
                     <label for="registerUserEmailInput">Email address *</label>
+                    <p class="text-danger message"></p>
                 </div>
 
                 <div class="pb-1"></div>
 
                 <div class="form-label-fixed mb-4">
                     <label for="registerPasswordInput" class="form-label">Password *</label>
-                    <input name="password" id="registerPasswordInput" class="form-control form-control_gray"
+                    <input name="mat_khau" id="registerPasswordInput" class="form-control form-control_gray"
                         type="password" placeholder="*******">
+                        <p class="text-danger message"></p>
                 </div>
 
                 <p class="text-secondary mb-4">Your personal data will be used to support your experience throughout
@@ -89,8 +93,8 @@
 </div><!-- /.aside aside_right -->
 <script>
     $(document).ready(function() {
-        const form = document.querySelector('.aside-form_login');
-        form.onsubmit = function() {
+        const formLogin = document.querySelector('.aside-form_login');
+        formLogin.onsubmit = function() {
             event.preventDefault();
             const data = {
 
@@ -125,6 +129,48 @@
                     Object.keys(errors).forEach(function(key) {
                         const p = form.querySelector(`input[name="${key}"]`)
                             .parentElement.querySelector(".message");
+                        p.innerText = errors[key];
+                    })
+                }
+            })
+        }
+        const formRegister = document.querySelector('.aside-form_register');
+        formRegister.onsubmit = function() {
+            event.preventDefault();
+            const data = {
+
+            }
+            const inputs = formRegister.querySelectorAll("input");
+            inputs.forEach(function(input) {
+                data[input.name] = input.value;
+    
+            });
+            console.log(data);
+            $.ajax({
+                url: "{{ route('client.register') }}",
+                method: 'POST',
+                data: data,
+                success: function(response) {
+                  if(Object.keys(response)[0] == 'success'){
+                    swal({
+                        title: response.success,
+                        text: "Vui lòng nhấn tiếp tục",
+                        icon: "success",
+                        button: "Tiếp tục!",
+                    })
+                    .then(function(res){
+                        const aside_form = document.querySelector('.customer-forms__wrapper');
+                        aside_form.style.left = "0";
+                    });
+                  }
+                },
+                error: function(error) {
+                    const errors = error.responseJSON.errors
+                    console.log(Object.keys(errors));
+                    Object.keys(errors).forEach(function(key) {
+                        const p = formRegister.querySelector(`input[name="${key}"]`)
+                            .parentElement.querySelector(".message");
+
                         p.innerText = errors[key];
                     })
                 }
