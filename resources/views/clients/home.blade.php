@@ -186,7 +186,7 @@ data-settings='{
             @foreach($sp_yeu_thich as $sp)
             <div class="swiper-slide product-card product-card_style3">
               <div class="pc__img-wrapper border-radius-0">
-                <a href="{{route('client  .sanphamchitiet',$sp->id)}}">
+                <a href="{{route('client.sanphamchitiet',$sp->id)}}">
                   <img loading="lazy" src="{{asset('storage/uploads/sanphams/'.$sp->hinh_anh)}}" width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                 </a>
               </div>
