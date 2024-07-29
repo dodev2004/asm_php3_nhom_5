@@ -34,7 +34,7 @@
                     <a href="reset_password.html" class="btn-text ms-auto">Lost password?</a>
                 </div>
 
-                <button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button>
+               <a href=""><button class="btn btn-primary w-100 text-uppercase" type="submit">Log In</button></a> 
 
                 <div class="customer-option mt-4 text-center">
                     <span class="text-secondary">No account yet?</span>
