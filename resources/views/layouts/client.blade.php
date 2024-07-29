@@ -39,7 +39,7 @@
   <main>
      @yield("content")
   </main>
-
+  <div class="mb-5 pb-xl-5"></div>
   <!-- Footer Type 1 -->
   @include('clients.blocks.footer')
 
@@ -68,9 +68,11 @@
   <script src="{{asset('clients/js/plugins/swiper.min.js')}}"></script>
   <script src="{{asset('clients/js/plugins/countdown.js')}}"></script>
   <script src="{{asset('clients/js/plugins/jquery.fancybox.js')}}"></script>
-
+  @yield('scripts')
   <!-- Footer Scripts -->
-  <script src="{{asset('clients/js/theme.js')}}"></script>
+  @include('clients/blocks/theme')
+
+
 
 </body>
 
