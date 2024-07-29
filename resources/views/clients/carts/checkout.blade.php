@@ -84,29 +84,27 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach( $giohangs as $giohang)
                     <tr>
+                   
                       <td>
-                        Zessi Dresses x 2
+                       {{ $giohang->sanphams[0]->ten_san_pham}}
+                    
+                        x {{ $giohang->sanphams[0]->pivot->so_luong}}
                       </td>
                       <td>
-                        $32.50
+                        {{ number_format($giohang->sanphams[0]->gia_san_pham,0,".",".") }} đ
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        Kirby T-Shirt
-                      </td>
-                      <td>
-                        $29.90
-                      </td>
-                    </tr>
+                    @endforeach
+                   
                   </tbody>
                 </table>
                 <table class="checkout-totals">
                   <tbody>
                     <tr>
                         <th>Thành tiền</th>
-                        <td>$62.40</td>
+                        <td>{{ number_format($total,0,".",".")}} đ</td>
                     </tr>
                     <tr>
                       <th>SHIPPING</th>
@@ -118,20 +116,21 @@
                     </tr>
                     <tr>
                       <th>Tổng tiền</th>
-                      <td>$81.40
-                            <input type="hidden" name="tong_tien">
-                      </td>
+                      <td>{{ number_format($total,0,".",".")}} đ</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div class="checkout__payment-methods">
+                @foreach ($pttt as $item)
                 <div class="form-check">
-                  <input class="form-check-input  form-check-input_fill" type="radio" name="phuong_thuc_thanh_toan_id" id="checkout_payment_method_1" checked>
-                  <label class="form-check-label" for="checkout_payment_method_1">
-                    Thanh toán khi nhận hàng   
-                  </label>
-                </div>
+                    <input class="form-check-input form-check-input_fill" type="radio" name="phuong_thuc_thanh_toan_id" value="{{$item->id}}" id="checkout_payment_method_1" checked>
+                    <label class="form-check-label" for="checkout_payment_method_1">
+                      {{ $item->ten_phuong_thuc}}
+                    </label>
+                  </div>
+                @endforeach
+                
               </div>
               <button class="btn btn-primary btn-checkout">PLACE ORDER</button>
             </div>

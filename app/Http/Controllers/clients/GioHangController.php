@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DanhMuc;
 use App\Models\GioHang;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class GioHangController extends Controller
 {
    public function index(){
@@ -33,6 +34,7 @@ class GioHangController extends Controller
    }
    public function checkout(){
     $title = "Trang chủ";
+    $pttt = DB::table("tb_phuong_thuc_thanh_toan")->get();
     $danhmucs = DanhMuc::query()->get();
     $total = 0;
     $giohangs = Auth::check() ?  GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get() : [];
@@ -43,6 +45,6 @@ class GioHangController extends Controller
     }
     $user = Auth::check()?  Auth::user() : "";
  
-    return view("clients.carts.checkout",compact("title",'danhmucs','giohangs','total','user'));
+    return view("clients.carts.checkout",compact("title",'danhmucs','giohangs','total','user','pttt'));
    }
 }
