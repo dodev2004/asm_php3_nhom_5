@@ -24,7 +24,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <a class="btn btn-primary" href="">Thêm mới phương thức thanh toán</a>
+          <a class="btn btn-primary" href="{{route('admin.pttt.create')}}">Thêm mới phương thức thanh toán</a>
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -42,8 +42,8 @@
               </td>
 
               <td>
-                <a href="{{route('pttt.edit',$item->id)}}" class="btn btn-info">Sửa</a>
-                <a href="{{route('pttt.destroy',$item->id)}}" class="btn btn-warning">Xóa</a>
+                <a href="{{route('admin.pttt.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                {{-- <a href="{{route('admin.pttt.destroy',$item->id)}}" class="btn btn-warning">Xóa</a> --}}
               </td>
             </tbody>
             @endforeach

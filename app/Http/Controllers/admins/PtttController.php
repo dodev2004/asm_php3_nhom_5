@@ -45,7 +45,7 @@ class PtttController extends Controller
             $params = $request->except('_token');
             // dd($params);
             $this->dsPttt->createPttt($params);
-            return redirect()->route('pttt.index');
+            return redirect()->route('admin.pttt.index');
         }
     }
 
@@ -75,7 +75,7 @@ class PtttController extends Controller
         if($request->isMethod('PUT')){
             $params = $request->except('_token', '_method');
             $this->dsPttt->updatePttt($id,$params);
-            return redirect()->route('pttt.index');
+            return redirect()->route('admin.pttt.index');
         }
         // $params = $request->post();
         // dd($params);

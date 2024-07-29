@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admins\SanPhamRequest;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class SanPhamController extends Controller
     }
     public function index()
     {
-        $title = "Quản lý sản phẩm - danh sách sản phẩm";
+        $title = "Danh sách sản phẩm";
         $tablename = "Danh sách sản phẩm";
         $data = $this->model->getAllSanPham();
         
@@ -33,17 +34,18 @@ class SanPhamController extends Controller
     public function create()
     {
         $danhmucs = $this->model->getAllDanhMuc();
-        $title = "Quản lý sản phẩm - Thêm mới sản phẩm";
+        $title = "Thêm mới sản phẩm";
        return view("admins.sanphams.them", compact("title","danhmucs"));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SanPhamRequest $request)
     {
         if($request->isMethod("POST")){
            $data = $request->except(["_token","nhieu_anh"]);
+        //    dd($data);
             if($request->hasFile("hinh_anh")){
                 $file = $request->file("hinh_anh");
                 $filename = time() . "_".$file->getClientOriginalName();
@@ -85,7 +87,7 @@ class SanPhamController extends Controller
     public function edit(string $id)
     {
         $danhmucs = $this->model->getAllDanhMuc();
-        $title = "Quản lý sản phẩm - Thêm mới sản phẩm";
+        $title = "Sửa sản phẩm";
         $data = $this->model->getSanPhamId($id);
       
        return view("admins.sanphams.sua", compact("title","danhmucs","data"));
@@ -94,7 +96,7 @@ class SanPhamController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SanPhamRequest $request, string $id)
     {
         if($request->isMethod("PUT")){
             $sanpham = SanPham::find($id);

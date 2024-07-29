@@ -68,7 +68,7 @@ return view('admins.donhangs.dsdonhang',compact('title','tablename','dsDonHang')
             $params = $request->except('_token', '_method');
             // dd($params);
             $this->don_hang->updateDonHang($id,$params);
-            return redirect()->route('donhang.index');
+            return redirect()->route('admin.donhang.index');
         }
         // $params = $request->post();
         // dd($params);

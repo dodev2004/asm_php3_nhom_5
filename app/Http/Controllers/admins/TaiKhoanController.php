@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admins\TaiKhoanRequest;
 use Illuminate\Http\Request;
 use App\Models\TaiKhoan;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ class TaiKhoanController extends Controller
     }
     public function index()
     {
-        $title = "Quản lý tài khoản - danh sách tài khoản";
+        $title = "Danh sách tài khoản";
         $tablename = "Danh tài khoản";
         $data = TaiKhoan::get();
 
@@ -32,22 +33,22 @@ class TaiKhoanController extends Controller
     public function create()
     {
         $chucvus = $this->model->getAllChucVu();
-        $title = "Quản lý sản phẩm - Thêm mới tài khoản";
+        $title = "Thêm mới tài khoản";
        return view("admins.taikhoans.them", compact("title","chucvus"));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TaiKhoanRequest $request)
     {
         if($request->isMethod("POST")){
            $data = $request->except(["_token","xac_nhan_mk"]);
             if($request->hasFile("anh_dai_dien")){
-                $file = $request->file("hinh_anh");
+                $file = $request->file("anh_dai_dien");
                 $filename = time() . "_".$file->getClientOriginalName();
                 $file->storeAs("public/uploads/taikhoan",$filename);
-               $data["hinh_anh"] = $filename;
+               $data["anh_dai_dien"] = $filename;
             }
              $id = $this->model->themTaiKhoan($data);
             
@@ -69,7 +70,7 @@ class TaiKhoanController extends Controller
     public function edit(string $id)
     {
        
-        $title = "Quản lý tài khoản - Sửa tài khoản";
+        $title = "Sửa tài khoản";
         $data = $this->model->getTaiKhoanId($id);
         $chucvus = $this->model->getAllChucVu();
     
@@ -79,7 +80,7 @@ class TaiKhoanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TaiKhoanRequest $request, string $id)
     {
         if($request->isMethod("PUT")){
            $data = $request->except("_token","_method");

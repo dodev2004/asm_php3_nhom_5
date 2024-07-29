@@ -66,7 +66,7 @@
               <td>{{$item->ten_trang_thai}}</td>
               
               <td>
-                <a href="{{route('donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                <a href="{{route('admin.donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
                 {{-- <a href="" class="btn btn-warning">Xóa</a> --}}
               </td>
            
