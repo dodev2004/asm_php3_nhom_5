@@ -9,17 +9,23 @@ use App\Models\SanPham;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\TaiKhoan;
+use App\Models\GioHang;
 use App\Http\Requests\Clients\RegisterRequest;
+
 class HomeController extends Controller
 {
     public function index(){
         $title = "Trang chủ";
         $danhmucs = DanhMuc::query()->get();
         $sp_yeu_thich = SanPham::query()->with("danhmucs")->orderBy('luot_xem','asc')->limit(10)->get();
-
+        $giohangs = Auth::check() ?  $this->getGioHangByUser(Auth::id()) : [];
         $sp_moi = SanPham::query()->orderBy('ngay_nhap','asc')->limit(10)->get();
-        return view("clients.home",compact('title','danhmucs','sp_yeu_thich'));
+        return view("clients.home",compact('title','danhmucs','sp_yeu_thich','giohangs'));
 
+    }
+    public function getGioHangByUser($user){
+        $giohangs = GioHang::query()->with("sanphams")->where('nguoi_dung_id', $user)->get();
+        return $giohangs;
     }
     public function login(Request $request){
         if($request->isMethod("POST")){
@@ -40,6 +46,10 @@ class HomeController extends Controller
             return response()->json(["errors"=>"Đăng nhập thất bại"]);
         }   
         }
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route("client.index");
     }
     public function register (RegisterRequest $request){
         if($request->isMethod("POST")){

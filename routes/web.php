@@ -15,6 +15,8 @@ use App\Http\Middleware\CheckRoleAdminMiddleware;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\clients\SanPhamController as ClientSanPham;
+use App\Http\Controllers\clients\GioHangController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,11 +51,15 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 //admin
 
 Route::prefix('/')->name("client.")->group(function(){
-   Route::get("/trang-chu",[HomeController::class,"index"]);
+   Route::get("/trang-chu",[HomeController::class,"index"])->name("index");
    Route::get("/san-pham-chi-tiet/{id}",[ClientSanPham::class,"sanphamchitiet"])->name("sanphamchitiet");   
+   Route::get("/client/logout",[HomeController::class,"logout"])->name("logout");
+   Route::get("/client/cart",[GioHangController::class,"index"])->name("cart");
+   Route::post("/client/cart-vocher",[GioHangController::class,"index"])->name("cartvocher");       
+   Route::get("/client/cart/checkout",[GioHangController::class,"checkout"])->name("cartcheckout");
 });
 Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
 Route::post("/client/register",[HomeController::class,"register"])->name("client.register");
-
-
-
+Route::post('/client/addCat',[ClientSanPham::class,"themSpGioHang"])->name("client.addCat");    
+Route::delete("/client/cart/delete/{id}",[ClientSanPham::class,"deleteGioHang"])->name("client.deletecart");
+Route::put("/client/cart/update/{id}",[GioHangController::class,"updateGioHang"])->name("client.updatecart");
