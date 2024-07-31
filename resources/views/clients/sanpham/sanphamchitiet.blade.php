@@ -135,21 +135,20 @@
                     <span class="current-price">{{ number_format($sanPham->gia_san_pham, 0, '.', '.') }} &#8363;</span>
                 </div>
 
-                <form name="addtocart-form" action="" method="POST" >
+                <form name="addtocart-form" action="" method="POST">
                     @csrf
                     <div class="product-single__addtocart">
                         <div class="qty-control position-relative">
-                            <input type="number" name="so_luong" value="1" min="1" max="{{$sanPham->so_luong}}"
-                                class="qty-control__number text-center">
+                            <input type="number" name="so_luong" value="1" min="1"
+                                max="{{ $sanPham->so_luong }}" class="qty-control__number text-center">
                             <div class="qty-control__reduce">-</div>
                             <div class="qty-control__increase">+</div>
                             <input type="hidden" name="san_pham_id" value="{{ $sanPham->id }}"
                                 class="qty-control__number text-center">
-                            <input type="hidden" name="nguoi_dung_id" value="{{ auth()->id()}}">
+                            <input type="hidden" name="nguoi_dung_id" value="{{ auth()->id() }}">
                         </div>
                         <!-- .qty-control -->
-                        <button type="submit"  class="btn btn-primary "
-                            >Add to Cart</button>
+                        <button type="submit" class="btn btn-primary ">Add to Cart</button>
                     </div>
                 </form>
                 <div class="product-single__addtolinks">
@@ -226,134 +225,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="tab-reviews" role="tabpanel" aria-labelledby="tab-reviews-tab">
-                    <h2 class="product-single__reviews-title">Reviews</h2>
-                    <div class="product-single__reviews-list">
-                        <div class="product-single__reviews-item">
-                            <div class="customer-avatar">
-                                <img loading="lazy" src="../images/avatar.jpg" alt="">
-                            </div>
-                            <div class="customer-review">
-                                <div class="customer-name">
-                                    <h6>Janice Miller</h6>
-                                    <div class="reviews-group d-flex">
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="review-date">April 06, 2023</div>
-                                <div class="review-text">
-                                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                                        minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-single__reviews-item">
-                            <div class="customer-avatar">
-                                <img loading="lazy" src="../images/avatar.jpg" alt="">
-                            </div>
-                            <div class="customer-review">
-                                <div class="customer-name">
-                                    <h6>Benjam Porter</h6>
-                                    <div class="reviews-group d-flex">
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
-                                            <use href="#icon_star" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="review-date">April 06, 2023</div>
-                                <div class="review-text">
-                                    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo
-                                        minus id quod maxime placeat facere possimus, omnis voluptas assumenda est…</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-single__review-form">
-                        <form name="customer-review-form">
-                            <h5>Be the first to review “Message Cotton T-Shirt”</h5>
-                            <p>Your email address will not be published. Required fields are marked *</p>
-                            <div class="select-star-rating">
-                                <label>Your rating *</label>
-                                <span class="star-rating">
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc"
-                                        viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc"
-                                        viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc"
-                                        viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc"
-                                        viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                    <svg class="star-rating__star-icon" width="12" height="12" fill="#ccc"
-                                        viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.1429 5.04687C11.1429 4.84598 10.9286 4.76562 10.7679 4.73884L7.40625 4.25L5.89955 1.20312C5.83929 1.07589 5.72545 0.928571 5.57143 0.928571C5.41741 0.928571 5.30357 1.07589 5.2433 1.20312L3.73661 4.25L0.375 4.73884C0.207589 4.76562 0 4.84598 0 5.04687C0 5.16741 0.0870536 5.28125 0.167411 5.3683L2.60491 7.73884L2.02902 11.0871C2.02232 11.1339 2.01563 11.1741 2.01563 11.221C2.01563 11.3951 2.10268 11.5558 2.29688 11.5558C2.39063 11.5558 2.47768 11.5223 2.56473 11.4754L5.57143 9.89509L8.57813 11.4754C8.65848 11.5223 8.75223 11.5558 8.84598 11.5558C9.04018 11.5558 9.12054 11.3951 9.12054 11.221C9.12054 11.1741 9.12054 11.1339 9.11384 11.0871L8.53795 7.73884L10.9688 5.3683C11.0558 5.28125 11.1429 5.16741 11.1429 5.04687Z" />
-                                    </svg>
-                                </span>
-                                <input type="hidden" id="form-input-rating" value="">
-                            </div>
-                            <div class="mb-4">
-                                <textarea id="form-input-review" class="form-control form-control_gray" placeholder="Your Review" cols="30"
-                                    rows="8"></textarea>
-                            </div>
-                            <div class="form-label-fixed mb-4">
-                                <label for="form-input-name" class="form-label">Name *</label>
-                                <input id="form-input-name" class="form-control form-control-md form-control_gray">
-                            </div>
-                            <div class="form-label-fixed mb-4">
-                                <label for="form-input-email" class="form-label">Email address *</label>
-                                <input id="form-input-email" class="form-control form-control-md form-control_gray">
-                            </div>
-                            <div class="form-check mb-4">
-                                <input class="form-check-input form-check-input_fill" type="checkbox" value=""
-                                    id="remember_checkbox">
-                                <label class="form-check-label" for="remember_checkbox">
-                                    Save my name, email, and website in this browser for the next time I comment.
-                                </label>
-                            </div>
-                            <div class="form-action">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                @include('clients.blocks.binhluan')
             </div>
         </div>
     </section>
@@ -367,7 +239,7 @@
         "slidesPerView": 4,
         "slidesPerGroup": 4,
         "effect": "none",
-        "loop": true,
+        "loop": false,
         "pagination": {
           "el": "#related_products .products-pagination",
           "type": "bullets",
@@ -400,7 +272,7 @@
                         <div class="swiper-slide product-card">
                             <div class="pc__img-wrapper">
                                 <a href="product1_simple.html">
-                                    <img loading="lazy" src="{{ asset('storage/uploads/sanphams/' . $sp->hinh_anh) }}"
+                                    <img loading="lazy" src="{{ asset('storage/uploads/sanphams/' . $sp->hinh_anh)}}"
                                         width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                                     <img loading="lazy" src="../images/products/product_3-1.jpg" width="330"
                                         height="400" alt="Cropped Faux leather Jacket" class="pc__img pc__img-second">
@@ -414,8 +286,8 @@
                                 <p class="pc__category">{{ $sp->danhmucs->ten_danh_muc }}</p>
                                 <h6 class="pc__title"><a href="product1_simple.html">{{ $sp->ten_san_pham }}</a></h6>
                                 <div class="product-card__price d-flex">
-                                    <span
-                                        class="money price">{{ number_format($sp->gia_san_pham, 0, '.', '.')}} &#8363;</span>
+                                    <span class="money price">{{ number_format($sp->gia_san_pham, 0, '.', '.') }}
+                                        &#8363;</span>
                                 </div>
 
                                 <button
@@ -452,28 +324,30 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            const formadd =document.querySelector("form[name='addtocart-form']");
-          
+            const formadd = document.querySelector("form[name='addtocart-form']");
+
             formadd.onsubmit = function(event) {
-                    event.preventDefault();
-                    const inputs = formadd.querySelectorAll('input');
-                    const data = {};
-                    
-                    inputs.forEach(function(input) {
-                        data[input.name] = input.value
-                    })
-                    setTimeout(() => {
-                        $.ajax({
+                event.preventDefault();
+                const inputs = formadd.querySelectorAll('input');
+                const data = {};
+
+                inputs.forEach(function(input) {
+                    data[input.name] = input.value
+                })
+                setTimeout(() => {
+                    $.ajax({
                         method: "POST",
                         url: "{{ route('client.addCat') }}",
                         data: data,
                         success: function(res) {
                             setTimeout(() => {
-                                const cart = document.querySelector(".cart-drawer-items-list")
-                            if (res.success) {
-                              
-                                const price = formatCurrency(parseInt(res.gia_san_pham));
-                                const html = `
+                                const cart = document.querySelector(
+                                    ".cart-drawer-items-list")
+                                if (res.success) {
+
+                                    const price = formatCurrency(parseInt(res
+                                        .gia_san_pham));
+                                    const html = `
                                 <div class="cart-drawer-item d-flex position-relative" data-index="${res.id}">
                                     <div class="position-relative">
                                     <a href="product1_simple.html">
@@ -499,55 +373,127 @@
 
                                 <hr class="cart-drawer-divider">
                                 `
-                                cart.insertAdjacentHTML('beforeend', html)
-                                let $total = 0;
-                                const $items =document.querySelectorAll(".cart-drawer-item__price");
-                                const count = document.querySelectorAll('.js-cart-items-count');
-                                count.forEach(function(item){
-                                item.textContent = $items.length
-                                })
-                                console.log($items);
-                                $items.forEach(function($item) {
-                                $total += parseFloat($item.textContent);
-                                });
-                                const totalprice = document.querySelector(".cart-subtotal");
-                                totalprice.innerHTML = $total + " &#8363;"
-                                document.querySelector(".cart-drawer").classList.add('aside_visible');
-                                document.querySelector(".page-overlay").classList.add('page-overlay_visible')
-                             }
-                             else if(res.update){
-                             const data  = res.update
-                             const item = cart.querySelector(`.cart-drawer-item[data-index='${data.id}']`);
-                             
-                             item.querySelector('input[name="so_luong"]').value = data.so_luong;
-                             let $total = 0;
-                            const $items =document.querySelectorAll(".cart-drawer-item__price");
-                                console.log($items);
-                                $items.forEach(function($item) {
-                                $total += parseFloat(data.so_luong)*parseFloat($item.textContent);
-                                });
-                              
-                                const totalprice = document.querySelector(".cart-subtotal");
-                                totalprice.innerHTML = $total + "&#8363;"
-                                document.querySelector(".cart-drawer").classList.add('aside_visible');
-                                document.querySelector(".page-overlay").classList.add('page-overlay_visible')
-                             }
-                             else {
-                                alert("Vui lòng đăng nhập để mua hàng")
-                             }
-                            },1000) 
-                             
+                                    cart.insertAdjacentHTML('beforeend', html)
+                                    let $total = 0;
+                                    const $items = document.querySelectorAll(
+                                        ".cart-drawer-item__price");
+                                    const count = document.querySelectorAll(
+                                        '.js-cart-items-count');
+                                    count.forEach(function(item) {
+                                        item.textContent = $items.length
+                                    })
+                                    console.log($items);
+                                    $items.forEach(function($item) {
+                                        $total += parseFloat($item
+                                            .textContent);
+                                    });
+                                    const totalprice = document.querySelector(
+                                        ".cart-subtotal");
+                                    totalprice.innerHTML = $total + " &#8363;"
+                                    document.querySelector(".cart-drawer").classList
+                                        .add('aside_visible');
+                                    document.querySelector(".page-overlay")
+                                        .classList.add('page-overlay_visible')
+                                } else if (res.update) {
+                                    const data = res.update
+                                    const item = cart.querySelector(
+                                        `.cart-drawer-item[data-index='${data.id}']`
+                                        );
 
-                      }
+                                    item.querySelector('input[name="so_luong"]')
+                                        .value = data.so_luong;
+                                    let $total = 0;
+                                    const $items = document.querySelectorAll(
+                                        ".cart-drawer-item__price");
+                                    $items.forEach(function($item) {
+                                        $so_luong = $item.parentElement.querySelector("input[name='so_luong']").value;
+                                    
+                                        $total += parseFloat( $so_luong) * parseFloat($item
+                                                .dataset.price);
+                                              
+                                    });
+                                  
+                                    const totalprice = document.querySelector(
+                                        ".cart-subtotal");
+                                    totalprice.innerHTML = formatCurrency($total) + "&#8363;"
+                                    document.querySelector(".cart-drawer").classList
+                                        .add('aside_visible');
+                                    document.querySelector(".page-overlay")
+                                        .classList.add('page-overlay_visible')
+                                } else {
+                                    alert("Vui lòng đăng nhập để mua hàng")
+                                }
+                            }, 1000)
+
+
+                        }
                     })
-                    },100);
-                  
+                }, 100);
 
-                }
-                function formatCurrency(amountInVND) {
-             return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amountInVND);
+
             }
 
+            function formatCurrency(amountInVND) {
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(amountInVND);
+            }
+
+        })
+    </script>
+    <script>
+        const formbl = document.querySelector("form[name='customer-review-form']")
+        formbl.onsubmit = function(event) {
+            event.preventDefault();
+            const noi_dung = document.querySelector("textarea[name='noi_dung']");
+            console.log(noi_dung);
+            const data = {
+                noi_dung: noi_dung.value,
+                san_pham_id: "{{ $sanPham->id }}"
+            }
+            $.ajax({
+                method: 'POST',
+                url: "{{ url('/client/thembinhluan') }}",
+                headers: {
+                    "X-CSRF-Token": "{{ csrf_token() }}"
+                },
+                data: data,
+                success: function(res) {
+                    if (res.success) {
+                        swal({
+                        title: res.success,
+                        text: "Vui lòng nhấn tiếp tục",
+                        icon: "success",
+                        button: "Tiếp tục!",
+                    })
+                    .then(function(res){
+                       if(res){
+                        
+                       }
+                    })
+                    }
+                    else if(res.error){
+                        swal({
+                        title: res.success,
+                        text: "Vui lòng đăng nhập để có thể bình luận",
+                        icon: "error",
+                        button: "Tiếp tục",
+                    })
+                    }
+                },
+                error: function(res) {
+                    const messages = Object.keys(res.responseJSON.errors);
+                    messages.forEach(function(message) {
+                        const element = formbl.querySelector(`textarea[name='${message}']`);
+                        element.nextElementSibling.textContent = res.responseJSON.errors[message];
+                    })
+
+
+                }
+
             })
+
+        }
     </script>
 @endsection

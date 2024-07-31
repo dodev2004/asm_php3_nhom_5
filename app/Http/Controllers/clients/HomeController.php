@@ -13,19 +13,23 @@ use App\Models\GioHang;
 use App\Http\Requests\Clients\RegisterRequest;
 
 class HomeController extends Controller
-{
+{   
     public function index(){
         $title = "Trang chủ";
         $danhmucs = DanhMuc::query()->get();
         $sp_yeu_thich = SanPham::query()->with("danhmucs")->orderBy('luot_xem','asc')->limit(10)->get();
-        $giohangs = Auth::check() ?  $this->getGioHangByUser(Auth::id()) : [];
+        if(session()->exists('cart')){
+            Auth::check() ?  session()->put('cart',GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart'); 
+        }
+        else {
+            session()->get('cart',[]);
+            Auth::check() ?  session()->put('cart',GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart',[]);
+        }
         $sp_moi = SanPham::query()->orderBy('ngay_nhap','asc')->limit(10)->get();
         return view("clients.home",compact('title','danhmucs','sp_yeu_thich','giohangs'));
 
-    }
-    public function getGioHangByUser($user){
-        $giohangs = GioHang::query()->with("sanphams")->where('nguoi_dung_id', $user)->get();
-        return $giohangs;
     }
     public function login(Request $request){
         if($request->isMethod("POST")){
@@ -48,6 +52,10 @@ class HomeController extends Controller
         }
     }
     public function logout(){
+        if(session()->exists("cart")){
+            session()->forget("cart");  // Xóa gi�� hàng
+            session()->save();  
+        }
         Auth::logout();
         return redirect()->route("client.index");
     }

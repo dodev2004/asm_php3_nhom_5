@@ -41,7 +41,10 @@
        @php
        $total = 0;
            foreach ($giohangs as $key => $giohang) {
-            $total += $giohang->sanphams[0]->pivot->so_luong * $giohang->sanphams[0]->gia_san_pham;
+            $sanphams = $giohang->sanphams;
+            foreach ($sanphams as $sanpham) {
+              $total += $sanpham->pivot->so_luong * $sanpham->gia_san_pham;
+            }
            }
        @endphp
         <span class="cart-subtotal fw-medium"> {{ number_format($total,"0",".",".")}} đ</span>

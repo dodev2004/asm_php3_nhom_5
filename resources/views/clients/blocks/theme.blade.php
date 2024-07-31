@@ -154,30 +154,37 @@
                         }
                       
                         const cartItem = $qty.closest('.cart_list')
-                        const price = parseFloat(cartItem.querySelector(".shopping-cart__product-price").innerText);
+                        const price = parseFloat(cartItem.querySelector(".shopping-cart__product-price").dataset.subtotal);
                         const subtotal = cartItem.querySelector('.shopping-cart__subtotal');
-                         subtotal.innerHTML = price *  $number.value + " &#8363;"
+                         subtotal.innerHTML =formatCurrency(price *  $number.value)  
+                         subtotal.setAttribute("data-subtotal",price *  $number.value)
                          const lists = Array.from(document.querySelectorAll(".cart_list"));
                         const subtotal_check = document.querySelector(".cart_subtotal");
                         const cart_total = document.querySelector('.cart_total');
                         let  total= lists.reduce(function(init,currency){
-                          const price = parseFloat(currency.querySelector(".shopping-cart__subtotal").innerText);
-                          console.log(price);
-                            return parseFloat(init) + price
+                          const price = parseFloat(currency.querySelector(".shopping-cart__subtotal").dataset.subtotal);
+                          console.log(currency);
+                        return parseFloat(init) + price
                         },0)
-                        console.log(total);
-                        subtotal_check.innerHTML = total + " &#8363;"
-                        cart_total.innerHTML = total + " &#8363;" 
+                        
+                        subtotal_check.innerHTML = formatCurrency(total) 
+                        cart_total.innerHTML =formatCurrency(total);
                         debounceUpdateQuantity($number);
                     }
                 });
             }
+            function formatCurrency(amountInVND) {
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(amountInVND);
+            }
+
             const debounceUpdateQuantity = debounce(function($number) {
               
                 const id = $number.dataset.id;
                 const so_luong = $number.value;
                 const _token = document.querySelector('input[name="_token"]').value
-                console.log(_token);
                 const $url = location.origin + "/client/cart/update/" + id;
                 $.ajax({
                     url: $url,

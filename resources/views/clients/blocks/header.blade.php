@@ -1,7 +1,7 @@
 <header id="header" class="header header_sticky header-fullwidth header-transparent-bg">
     <div class="header-desk header-desk_type_4">
       <div class="logo">
-        <a href="index.html">
+        <a href="{{route('client.index') }}">
           <img src="{{asset('storage/clients/images/logo-black.png')}}" alt="Uomo" class="logo__image d-block')}}">
         </a>
       </div><!-- /.logo -->
@@ -9,7 +9,7 @@
       <nav class="navigation">
         <ul class="navigation__list list-unstyled d-flex">
           <li class="navigation__item">
-            <a href="#" class="navigation__link">Trang chủ</a>
+            <a href="{{route('client.index') }}" class="navigation__link">Trang chủ</a>
           </li>
         
           <li class="navigation__item">
@@ -75,7 +75,7 @@
             </a>
             <ul class="default-menu list-unstyled">
               <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">Cài đặt</a></li>
-              <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">Cầu hình tài khoản</a></li>
+              <li class="sub-menu__item"><a href="{{route("client.qltaikhoan")}}" class="menu-link menu-link_us-s">Cầu hình tài khoản</a></li>
               <li class="sub-menu__item"><a href="{{ route('client.logout')}}" class="menu-link menu-link_us-s">Đăng xuất</a></li>
             </ul>
           </div>

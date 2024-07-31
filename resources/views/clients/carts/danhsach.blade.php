@@ -71,7 +71,7 @@
               </div>
             </td>
             <td>
-              <span class="shopping-cart__product-price">{{ number_format($giohang->sanphams[0]->gia_san_pham,0,".",".")}} &#8363;</span>
+              <span data-subtotal="{{$giohang->sanphams[0]->gia_san_pham}}" class="shopping-cart__product-price">{{ number_format($giohang->sanphams[0]->gia_san_pham,0,".",".")}} &#8363;</span>
             </td>
             <td>
               <div class="qty-control position-relative">
@@ -81,7 +81,7 @@
               </div><!-- .qty-control -->
             </td>
             <td>
-              <span class="shopping-cart__subtotal">{{ number_format($giohang->sanphams[0]->gia_san_pham  * $giohang->sanphams[0]->pivot->so_luong ,0,".",".")}} &#8363;</span>
+              <span data-subtotal="{{$giohang->sanphams[0]->gia_san_pham  * $giohang->sanphams[0]->pivot->so_luong}}" class="shopping-cart__subtotal">{{ number_format($giohang->sanphams[0]->gia_san_pham  * $giohang->sanphams[0]->pivot->so_luong ,0,".",".")}} &#8363;</span>
             </td>
             <td>
               <a href="#" class="remove-cart" data-index="{{ $giohang->id}}">
@@ -103,7 +103,7 @@
         <button class="btn btn-light">UPDATE CART</button>
       </div>
     </div>
-    <form class="shopping-cart__totals-wrapper">
+    <form class="shopping-cart__totals-wrapper"  >
       <div class="sticky-content">
         <div class="shopping-cart__totals">
           <h3>Cart Totals</h3>

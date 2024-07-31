@@ -34,7 +34,8 @@
           </span>
         </a>
       </div>
-      <form name="checkout-form" action="https://uomo-html.flexkitux.com/Demo10/shop_order_complete.html">
+      <form name="checkout-form" action="{{ route('client.cartmuahang') }}" method="POST">
+        @csrf
         <div class="checkout-form">
           <div class="billing-info__wrapper">
             <h4>BILLING DETAILS</h4>
@@ -43,12 +44,18 @@
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" name="ten_nguoi_nhan" id="checkout_last_name" placeholder="Last Name">
                   <label for="checkout_last_name">Họ và tên *</label>
+                  @error('ten_nguoi_nhan')
+                      <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating mt-3 mb-3">
                   <input type="text" class="form-control" name="email_nguoi_nhan" id="checkout_street_address" placeholder="Street Address *">
                   <label for="checkout_company_name">Email *</label>
+                  @error('email_nguoi_nhan')
+                      <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
         
@@ -56,12 +63,18 @@
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" name="dia_chi_nguoi_nhan" id="checkout_province" placeholder="Province *">
                   <label for="checkout_province">Địa chỉ *</label>
+                  @error('dia_chi_nguoi_nhan')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-floating my-3">
                   <input type="text" class="form-control" name="so_dien_thoai_nguoi_nhan" id="checkout_phone" placeholder="Phone *">
                   <label for="checkout_phone">Số điện thoại *</label>
+                  @error('so_dien_thoai_nguoi_nhan')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
               </div>
               
@@ -116,7 +129,9 @@
                     </tr>
                     <tr>
                       <th>Tổng tiền</th>
-                      <td>{{ number_format($total,0,".",".")}} đ</td>
+                      <td>{{ number_format($total,0,".",".")}}  
+                        <input type="hidden" name="tong_tien" value="{{$total}}">
+                      </td>
                     </tr>
                   </tbody>
                 </table>
