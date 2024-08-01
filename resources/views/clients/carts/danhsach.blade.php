@@ -96,8 +96,8 @@
         </tbody>
       </table>
       <div class="cart-table-footer">
-        <form action="https://uomo-html.flexkitux.com/Demo10/" class="position-relative bg-body">
-          <input class="form-control" type="text" name="coupon_code" placeholder="Coupon Code">
+        <form action=""  class="position-relative bg-body form-coupon">
+          <input class="form-control" type="text" name="ma_giam_gia" placeholder="Coupon Code">
           <input class="btn-link fw-medium position-absolute top-0 end-0 h-100 px-4" type="submit" value="APPLY COUPON">
         </form>
         <button class="btn btn-light">UPDATE CART</button>
@@ -111,7 +111,7 @@
             <tbody>
               <tr>
                 <th>Subtotal</th>
-                <td class="cart_subtotal">{{number_format($total,0,".",".")}} &#8363;</td>
+                <td data-price="{{$subtotal}}" class="cart_subtotal">{{number_format($subtotal,0,".",".")}} &#8363;</td>
               </tr>
               <tr>
                 <th>Shipping</th>
@@ -123,9 +123,39 @@
                   
                 </td>
               </tr>
+              @session('coupon')
+              <tr   class="coupon_detail-name">
+                <th>Mã giảm giá</th>
+                <td>
+                  {{ $ten_ma_giam_gia }}
+                </td>       
+              </tr>
+              <tr class="coupon-price">
+                <th></th>
+                <td>
+                    - {{ number_format($duocgiam,0,".",".")}}
+                </td>
+              <tr>
+              @endsession
+             
+             
+            
+              <tr style="display:none"  class="coupon_detail-name">
+                <th>Mã giảm giá</th>
+                <td>
+                    Tên mã giảm giá
+                </td>
+              </tr>
+              <tr style="display:none" class="coupon-price">
+                <th></th>
+                <td>
+                    -200.000 đ
+                </td>
+              <tr>
+             
               <tr>
                 <th>Total</th>
-                <td class="cart_total">{{number_format($total,0,".",".")}} &#8363;</td>
+                <td data-price="{{$total}}" class="cart_total">{{number_format($total,0,".",".")}} &#8363;</td>
               </tr>
             </tbody>
           </table>
@@ -139,4 +169,47 @@
     </form>
   </div>
 </section>
+@endsection
+@section('scripts')
+  <script>
+    const formCoupon = document.querySelector(".form-coupon")
+    console.log(formCoupon);
+    formCoupon.onsubmit = function(){
+      event.preventDefault();
+      const maGiamGia = this.querySelector("input[name='ma_giam_gia']");
+      const url =  `${location.origin}/client/magiamgia?ma_giam_gia=${maGiamGia.value}`;
+      $.ajax({
+        url : url,
+        method :"GET",
+        success : function(res){
+          if(res.success){
+            const subtotal = document.querySelector(".cart_subtotal");
+            const total = document.querySelector(".cart_total");
+        
+            const coupon_name = document.querySelector(".coupon_detail-name");
+            const coupon_price = document.querySelector(".coupon-price")
+            const giamgia = res.ma_giam_gia;
+            if(giamgia.dieu_kien ==1){
+              const giam_gia = ( (100-parseInt(giamgia.giam_gia)) / 100) * parseInt(subtotal.dataset.price) ;
+              const duoctru = parseInt(subtotal.dataset.price) * ( parseInt(giamgia.giam_gia) / 100)
+              total.innerHTML = formatCurrency(giam_gia);
+              coupon_name.style.display = 'table-row';
+              coupon_price.style.display = 'table-row';
+              coupon_name.querySelector("td").innerHTML = giamgia.ten_ma_giam_gia;
+              coupon_price.querySelector("td").innerHTML =  "- "+formatCurrency(duoctru);
+            }
+            else {
+
+            }
+          }
+        }
+      })
+    }
+    function formatCurrency(amountInVND) {
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(amountInVND);
+            }
+  </script>
 @endsection

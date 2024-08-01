@@ -19,21 +19,8 @@ use App\Http\Controllers\clients\SanPhamController as ClientSanPham;
 use App\Http\Controllers\clients\GioHangController;
 use App\Http\Controllers\clients\DonHangController as  ClientDonHang;
 use App\Http\Controllers\clients\BinhLuanController as clientBinhLuan;
+use App\Http\Controllers\admins\BinhLuanController;
 use App\Http\Controllers\clients\TaiKhoanController as clientTaiKhoan;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
-
 
 
 Route::get('/', function () {
@@ -46,6 +33,7 @@ Route::middleware(['auth',CheckRoleAdminMiddleware::class])->prefix("admin")->na
     Route::resource('donhang', DonHangController::class);
     Route::resource("chucvus", ChucvuController::class); 
     Route::resource('danhmucs', DanhMucController::class);
+    Route::resource('binhluan',BinhLuanController::class);
 });
 Route::get('login', [AuthController::class, 'showFormLogin']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
@@ -72,6 +60,10 @@ Route::prefix('/')->name("client.")->group(function(){
    Route::get("/client/taikhoan/chitiet",[clientTaiKhoan::class,"chitiet"])->name("qltaikhoanchitiet");
    Route::get("/client/qlDonHang/",[ClientDonHang::class,"qldonhang"])->name("qldonhang");
    Route::get("/client/qlDonHang/{id}",[ClientDonHang::class,"donhangchitiet"])->name("donhangchitiet");
+   Route::get("/client/danh-muc/{id}",[HomeController::class,"getspbyid"])->name("danhmucsanpham");
+   Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
+   Route::get("/client/magiamgia",[GioHangController::class,"checkCoupon"])->name("magiamgia");
+
 });
 Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
 Route::post("/client/register",[HomeController::class,"register"])->name("client.register");

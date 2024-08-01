@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section("title")
-
+  {{ $title }}
 @endsection
 @section('head')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,77 +24,57 @@
             </div>
             @endsession
             
-          <h3 class="card-title">Danh sách sản phẩm</h3>
+          <h3 class="card-title">{{ $tablename }}</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <form action="{{ route('admin.sanpham.index') }}" method="get">
-            <div class="row mb-3">
-                <div class="col-md-3">
-                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm tên sản phẩm hoặc mô tả" value="{{ request('search') }}">
+          <form action="{{ route('admin.binhluan.index') }}" method="get">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm">
                 </div>
-                <div class="col-md-3">
-                    <select class="form-control" name="danh_muc_id">
-                        <option value="">Tất cả danh mục</option>
-                        @foreach($danhmucs as $danhmuc)
-                            <option value="{{ $danhmuc->id }}" {{ request('danh_muc_id') == $danhmuc->id ? 'selected' : '' }}>{{ $danhmuc->ten_danh_muc }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-control" name="trang_thai">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="1" {{ request('trang_thai') == 1 ? 'selected' : '' }}>Kích hoạt</option>
-                        <option value="0" {{ request('trang_thai') == 0 ? 'selected' : '' }}>Không kích hoạt</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <button class="btn btn-primary">Tìm kiếm</button>
-                </div>
+                <button class="btn btn-primary">Tìm kiếm</button>
             </div>
         </form>
-          <a class="btn btn-primary" href="{{route("admin.sanpham.create")}}">Thêm mới sản phẩm</a>
+        
+         
+          {{-- <a class="btn btn-primary" href="{{route("admin.binh.create")}}">Thêm mới tài khoản</a> --}}
           <table id="example2" class="table table-bordered table-hover">
             <thead>
             <tr>
               <th></th>
-              <th>Tên sản phẩm</th>
-              <th>Mô tả</th>
-              <th>Gía sản phẩm</th>
-             
-              <th>Ngày nhập</th>
-              <th>Danh mục</th>
-              <th>Trạng thái</th>
+              <th>Tài khoản</th>
+              <th>Số sản phẩm đã bình luận</th>
+              <th>Số lượng bình luận</th>
+              {{-- <th>Trạng thái</th> --}}
               <th>Hành động</th>
             </tr>
             </thead>
             <tbody>
-                @foreach($data as $sanpham)
+                {{-- {{$comments}} --}}
+                @foreach($comments as $index => $item)
                 <tr>
-                    <td><input type="checkbox" value="{{$sanpham->id}}"></td>
+                    <td>{{$index +1}}</td>
                     <td>
-                      <p class="mb-0">{{ $sanpham->ten_san_pham }}</p>
-                      <span>Số lượng : <strong>{{ $sanpham->so_luong }}</strong></span>
+                        {{ $item->ho_ten}}
+         
+                       </td>
+                    <td>
+                     {{ $item->so_luong_san_pham}}
+      
                     </td>
-                    <td>{{ $sanpham->mo_ta }}</td>
-                    <td>
-                      <p class="mb-0">Giá sp : {{ number_format($sanpham->gia_san_pham, 0, ".", ".") . " đ" }}</p>
-                    </td>
-                    <td>{{ $sanpham->ten_danh_muc }}</td>
-                    <td>{{ $sanpham->ngay_nhap }}</td>
-                    <td>{{ $sanpham->trang_thai ? "Kích hoạt" : "Không kích hoạt" }}</td>
-                    <td>
-                      <div style="display:flex; column-gap:5px">   
-                        <a href="{{ route("admin.sanpham.edit", $sanpham->id) }}" class="btn btn-info">Sửa</a>
-                        <form action="{{ route("admin.sanpham.destroy", $sanpham->id) }}" onsubmit='return confirm("Bạn chắc chắn muốn xóa chứ")' method="POST">
-                          @csrf
-                          @method("DELETE")
-                          <button class=" btn btn-warning">Xóa</button>
-                      </form>
-                    </div>
-                      
+                    <td>{{ $item->so_luong_binh_luan }}</td>
+                 
+                    {{-- <td>{{ $item->ten_chuc_vu }}</td> --}}
+                    {{-- <td class="{{ $item->trang_thai === 1  ? "text-success" :  "text-danger" }}">{{ $item->trang_thai === 1  ? "Hiển thị" :  "Ẩn" }}</td> --}}
+                     <td>
+                  
+                        <div style="display:flex; column-gap:5px ;justify-content: center; ">   
+                            <a href="{{ route('admin.binhluan.show',$item->tai_khoan_id) }}" class="btn btn-info">Xem</a>
+                          
+                        </div> </td>
                      
-                    </td>
+                   
                 </tr>
              @endforeach
             </tbody>

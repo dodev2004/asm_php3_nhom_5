@@ -13,14 +13,27 @@ class ChucVuController extends Controller
     {
         $this->chuc_vu= new ChucVu();
     }
-    public function index()
+    public function index(Request $request)
     {
-
-        $title = "Quản chức vụ";
+        $title = "Quản lý chức vụ";
         $tablename = "Danh sách chức vụ";
-        $listChucVu = ChucVu::get();
+    
+        // Lấy từ khóa tìm kiếm từ request
+        $search = $request->input('search');
+    
+        // Truy vấn để lấy danh sách chức vụ
+        $query = ChucVu::query();
+    
+        // Nếu có từ khóa tìm kiếm, thêm điều kiện lọc
+        if (!empty($search)) {
+            $query->where('ten_chuc_vu', 'LIKE', "%{$search}%");
+        }
+    
+        $listChucVu = $query->get();
+    
         return view('admins.chucvus.danhsach', compact('title', 'listChucVu'));
     }
+    
     public function create()
     {
 

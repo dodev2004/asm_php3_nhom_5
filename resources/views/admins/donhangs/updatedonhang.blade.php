@@ -14,7 +14,10 @@
     <!-- left column -->
      <div class="col-12">
         {{-- {{$donHang}} --}}
+
         <form action="{{route('admin.donhang.update',$donHang->id)}}" method="POST">
+
+
             @csrf
             @method('PUT')
         <div class="row">

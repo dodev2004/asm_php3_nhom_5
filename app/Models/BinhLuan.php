@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+
 class BinhLuan extends Model
 {
     use HasFactory;
+
     protected $table = "tb_binh_luan";
     protected $fillable = [
         'tai_khoan_id',
@@ -26,4 +28,5 @@ class BinhLuan extends Model
         ->get();
         ;
     }
+
 }

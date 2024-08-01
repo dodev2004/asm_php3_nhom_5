@@ -17,21 +17,30 @@
 @endsection
 @section("content")
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">{{$tablename}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <a class="btn btn-primary" href="">Thêm mới phương thức thanh toán</a>
-          <table id="example2" class="table table-bordered table-hover">
-            <thead>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{$tablename}}</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form action="{{ route('admin.pttt.index') }}" method="get">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <input type="text" class="form-control" name="search" placeholder="Tìm kiếm phương thức thanh toán" value="{{ request('search') }}">
+            </div>
+            <button class="btn btn-primary">Tìm kiếm</button>
+          </div>
+        </form>
+        <a class="btn btn-primary" href="{{route('admin.pttt.create')}}">Thêm mới phương thức thanh toán</a>
+        <table id="example2" class="table table-bordered table-hover">
+          <thead>
             <tr>
               <th></th>
               <th>Tên phương thức</th>
               <th>Hành động</th>
             </tr>
+
             </thead>
             <tbody>
               {{-- {{$dsPttt}} --}}
@@ -46,17 +55,33 @@
                 <a href="{{route('admin.pttt.destroy',$item->id)}}" class="btn btn-warning">Xóa</a>
               </td>
             </tbody>
+=======
+          </thead>
+          <tbody>
+            @foreach ($dsPttt as $index=>$item)
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>
+                  <p class="mb-0">{{$item->ten_phuong_thuc}}</p>
+                </td>
+                <td>
+                  <a href="{{route('admin.pttt.edit', $item->id)}}" class="btn btn-info">Sửa</a>
+                  {{-- <a href="{{route('admin.pttt.destroy', $item->id)}}" class="btn btn-warning">Xóa</a> --}}
+                </td>
+              </tr>
+
             @endforeach
-          
-          </table>
-        </div>
-        <!-- /.card-body -->
+          </tbody>
+        </table>
       </div>
-      <!-- /.card -->
-      <!-- /.card -->
+      <!-- /.card-body -->
     </div>
-    <!-- /.col -->
+    <!-- /.card -->
+    <!-- /.card -->
   </div>
+  <!-- /.col -->
+</div>
+
 @endsection
 @section("scripts")
 <script src="{{asset('admins/plugins/jquery/jquery.min.js')}}"></script>

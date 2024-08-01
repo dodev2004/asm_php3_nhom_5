@@ -16,7 +16,7 @@
             <a href="#" class="navigation__link">Danh mục sản phẩm</a>
             <ul class="default-menu list-unstyled">
               @foreach($danhmucs as $danhmuc)
-              <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">{{$danhmuc->ten_danh_muc}}</a></li>
+              <li class="sub-menu__item"><a href="{{route('client.danhmucsanpham',$danhmuc->id) }}" class="menu-link menu-link_us-s">{{$danhmuc->ten_danh_muc}}</a></li>
               @endforeach
             </ul><!-- /.box-menu -->
           </li>
@@ -39,7 +39,7 @@
           </div>
 
           <div class="search-popup js-hidden-content">
-            <form action="https://uomo-html.flexkitux.com/Demo10/search_result.html" method="GET" class="search-field container">
+            <form action="{{ route('client.search') }}" method="GET"  class="search-field container">
               <p class="text-uppercase text-secondary fw-medium mb-4">What are you looking for?</p>
               <div class="position-relative">
                 <input class="search-field__input search-popup__input w-100 fw-medium" type="text" name="search-keyword" placeholder="Search products">
