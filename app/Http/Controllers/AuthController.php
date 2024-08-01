@@ -56,6 +56,7 @@ public function login(LoginRequest $request)
     //Đăng xuất
     public function logout(Request $request){
         Auth::logout();
+        
         return redirect('/login');
     }
 }

@@ -6,7 +6,7 @@
                 <button class="btn-close-lg js-close-aside ms-auto"></button>
             </div><!-- /.aside-header -->
 
-            <form action="https://uomo-html.flexkitux.com/Demo10/login_register.html" method="POST"
+            <form action="https://uomo-html.flexkitux.com/Demo10/login_register.html"  method="POST"
                 class="aside-content aside-form_login">
                 @csrf
                 <div class="form-floating mb-3">
@@ -99,7 +99,8 @@
             const data = {
 
             }
-            const inputs = form.querySelectorAll("input");
+           
+            const inputs = formLogin.querySelectorAll("input");
             inputs.forEach(function(input) {
                 data[input.name] = input.value;
 
@@ -127,7 +128,7 @@
                     const errors = error.responseJSON.errors
                     console.log(Object.keys(errors));
                     Object.keys(errors).forEach(function(key) {
-                        const p = form.querySelector(`input[name="${key}"]`)
+                        const p = formLogin.querySelector(`input[name="${key}"]`)
                             .parentElement.querySelector(".message");
                         p.innerText = errors[key];
                     })

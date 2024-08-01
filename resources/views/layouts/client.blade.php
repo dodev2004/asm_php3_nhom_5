@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{asset('clients/css/plugins/jquery.fancybox.css')}}" type="text/css">
   <link rel="stylesheet" href="{{asset('clients/css/style.css')}}" type="text/css"> 
   @yield("style")
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--[if lt IE 9]>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -39,7 +40,7 @@
   <main>
      @yield("content")
   </main>
-
+  <div class="mb-5 pb-xl-5"></div>
   <!-- Footer Type 1 -->
   @include('clients.blocks.footer')
 
@@ -57,7 +58,7 @@
   <div class="page-overlay"></div><!-- /.page-overlay -->
 
   <script src="{{asset('clients/js/plugins/jquery.min.js')}}"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
   <!-- External JavaScripts -->
   @if(!Auth::check())
   @include("clients.blocks.login")
@@ -68,9 +69,11 @@
   <script src="{{asset('clients/js/plugins/swiper.min.js')}}"></script>
   <script src="{{asset('clients/js/plugins/countdown.js')}}"></script>
   <script src="{{asset('clients/js/plugins/jquery.fancybox.js')}}"></script>
-
+  @yield('scripts')
   <!-- Footer Scripts -->
-  <script src="{{asset('clients/js/theme.js')}}"></script>
+  @include('clients/blocks/theme')
+
+
 
 </body>
 

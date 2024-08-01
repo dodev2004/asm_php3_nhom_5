@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Pttt extends Model
 {
     use HasFactory;
+    protected $table = "tb_phuong_thuc_thanh_toan";     
     public function getList() {
      $dsPttt = DB::table('tb_phuong_thuc_thanh_toan')->get();
      return $dsPttt;
