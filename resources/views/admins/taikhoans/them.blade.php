@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="name" name="dia_chi" placeholder="Nhập email tài khoản">
+                                            <input type="text" class="form-control" id="name" name="dia_chi" placeholder="Nhập địa chỉ">
                                         </div>
                                     </div>  
                                     <div class="row">
