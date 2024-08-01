@@ -18,6 +18,8 @@ class HomeController extends Controller
         $title = "Trang chủ";
         $danhmucs = DanhMuc::query()->get();
         $sp_yeu_thich = SanPham::query()->with("danhmucs")->orderBy('luot_xem','asc')->limit(10)->get();
+        $sp_moi = SanPham::query()->orderBy("ngay_nhap","asc")->limit(10)->get();
+     
         if(session()->exists('cart')){
             Auth::check() ?  session()->put('cart',GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
             $giohangs = session()->get('cart'); 
@@ -28,7 +30,7 @@ class HomeController extends Controller
             $giohangs = session()->get('cart',[]);
         }
         $sp_moi = SanPham::query()->orderBy('ngay_nhap','asc')->limit(10)->get();
-        return view("clients.home",compact('title','danhmucs','sp_yeu_thich','giohangs'));
+        return view("clients.home",compact('title','danhmucs','sp_yeu_thich','giohangs','sp_moi'));
 
     }
     public function login(Request $request){
@@ -54,6 +56,10 @@ class HomeController extends Controller
     public function logout(){
         if(session()->exists("cart")){
             session()->forget("cart");  // Xóa gi�� hàng
+            session()->save();  
+        }
+        if(session()->exists("coupon")){
+            session()->forget("coupon");  // Xóa gi�� hàng
             session()->save();  
         }
         Auth::logout();

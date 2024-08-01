@@ -11,6 +11,7 @@ use App\Http\Requests\Clients\MuaHangRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\XacNhanDonHangMail;
+use Illuminate\Support\Facades\DB;
 class DonHangController extends Controller
 {
     public function qldonhang(){
@@ -54,6 +55,16 @@ class DonHangController extends Controller
          }
          if(count($carts) > 0){
             $donhang = DonHang::query()->create($data);
+            if(session()->exists("coupon")){
+                $coupon = session()->get("coupon");
+                $coupon = DB::table("tb_giam_gia")->where("ma_giam_gia",$coupon)->first();
+                 DB::table("tb_giam_gia")->where("ma_giam_gia",$coupon->ma_giam_gia)->update([
+                    "so_luong" => $coupon->so_luong - 1,
+                ]);
+                session()->forget("coupon");
+                session()->save();
+            }
+
             $donhang->ma_don_hang = time() + $donhang->id;
             $donhang->save();
              $pivot = array_map(function($cart) use ($donhang){
