@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admins;
 use App\Http\Controllers\Controller;
 use App\Models\Pttt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PtttController extends Controller
 {
@@ -16,13 +17,26 @@ class PtttController extends Controller
     {
         $this->dsPttt= new Pttt();
     }
-    public function index()
+    public function index(Request $request)
     {
         $title = "Quản lý phương thức thanh toán";
-        $tablename = "Danh sách phương thức thanh toán";  
-        $dsPttt= $this->dsPttt->getList();
-       return view('admins.donhangs.pttt',compact('title','tablename','dsPttt'));
+        $tablename = "Danh sách phương thức thanh toán";
+        
+        $search = $request->input('search');
+        
+        // Query tìm kiếm
+        $query = DB::table('tb_phuong_thuc_thanh_toan');
+        
+        if ($search) {
+            $query->where('ten_phuong_thuc', 'like', "%{$search}%");
+        }
+        
+        $dsPttt = $query->get();
+        
+        return view('admins.donhangs.pttt', compact('title', 'tablename', 'dsPttt'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.

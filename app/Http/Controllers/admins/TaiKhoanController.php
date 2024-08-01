@@ -18,14 +18,29 @@ class TaiKhoanController extends Controller
         $this->model = $model;
         
     }
-    public function index()
+    public function index(Request $request)
     {
         $title = "Danh sách tài khoản";
-        $tablename = "Danh tài khoản";
-        $data = TaiKhoan::get();
-
-       return view("admins.taikhoans.danhsach", compact("title", "tablename","data"));
+        $tablename = "Danh sách tài khoản";
+        
+        $query = TaiKhoan::query()->with('chucvu');
+    
+        if ($search = $request->input('search')) {
+            $query->where(function ($query) use ($search) {
+                $query->where('ho_ten', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhere('so_dien_thoai', 'like', "%{$search}%")
+                      ->orWhereHas('chucvu', function($q) use ($search) {
+                          $q->where('ten_chuc_vu', 'like', "%{$search}%");
+                      });
+            });
+        }
+    
+        $data = $query->get();
+    
+        return view("admins.taikhoans.danhsach", compact("title", "tablename", "data"));
     }
+    
 
     /**
      * Show the form for creating a new resource.

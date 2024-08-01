@@ -15,75 +15,95 @@
 @endsection
 @section("content")
 <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">{{$tablename}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          {{-- <a class="btn btn-primary" href="">Thêm mới sản phẩm</a> --}}
-          <table id="example2" class="table table-bordered table-hover">
-            <thead>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">{{$tablename}}</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form action="{{ route('admin.donhang.index') }}" method="get">
+          <div class="row mb-3">
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="search" placeholder="Tìm kiếm (Mã đơn hàng, Tên người nhận, Email, Số điện thoại, Địa chỉ, Ghi chú)" value="{{ request('search') }}">
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary">Tìm kiếm</button>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <select class="form-control" name="phuong_thuc_thanh_toan_id">
+                <option value="">Chọn phương thức thanh toán</option>
+                @foreach($phuongThucThanhToan as $pttt)
+                  <option value="{{ $pttt->id }}" {{ request('phuong_thuc_thanh_toan_id') == $pttt->id ? 'selected' : '' }}>
+                    {{ $pttt->ten_phuong_thuc }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-md-6">
+              <select class="form-control" name="trang_thai_id">
+                <option value="">Chọn trạng thái đơn</option>
+                @foreach($trangThaiDonHang as $ttdh)
+                  <option value="{{ $ttdh->id }}" {{ request('trang_thai_id') == $ttdh->id ? 'selected' : '' }}>
+                    {{ $ttdh->ten_trang_thai }}
+                  </option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        </form>
+        <table id="example2" class="table table-bordered table-hover">
+          <thead>
             <tr>
               <th></th>
               <th>Mã đơn hàng</th>
               <th>Id người dùng</th>
-              <th>Ten nguoi nhan</th>
-             
+              <th>Tên người nhận</th>
               <th>Email</th>
               <th>Số điện thoại</th>
               <th>Địa chỉ</th>
               <th>Ngày đặt</th>      
               <th>Tổng tiền</th>      
               <th>Ghi chú</th>      
-              <th>P.thức thanh toán</th>      
+              <th>Phương thức thanh toán</th>      
               <th>Trạng thái</th>      
               <th>Hành động</th>      
             </tr>
-            </thead>
-            <tbody>
-              {{-- {{$dsDonHang}} --}}
-              @foreach ($dsDonHang as $index=>$item)
+          </thead>
+          <tbody>
+            @foreach ($dsDonHang as $index=>$item)
+            <tr>
               <td><input type="checkbox"></td>
-              <td>
-                <p class="mb-0">{{$item->ma_don_hang}}</p>
-               
-              </td>
+              <td>{{$item->ma_don_hang}}</td>
               <td>{{$item->nguoi_dung_id}}</td>
-              <td>
-                <p >{{$item->ten_nguoi_nhan}}</p>
-                
-              </td>
+              <td>{{$item->ten_nguoi_nhan}}</td>
               <td>{{$item->email_nguoi_nhan}}</td>
               <td>{{$item->so_dien_thoai_nguoi_nhan}}</td>
-              
               <td>{{$item->dia_chi_nguoi_nhan}}</td>
               <td>{{$item->ngay_dat}}</td>
               <td>{{$item->tong_tien}}</td>
               <td>{{$item->ghi_chu}}</td>
               <td>{{$item->ten_phuong_thuc}}</td>
               <td>{{$item->ten_trang_thai}}</td>
-              
               <td>
-                <a href="{{route('admin.donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                <a href="{{route('admin.donhang.edit', $item->id)}}" class="btn btn-info">Sửa</a>
                 {{-- <a href="" class="btn btn-warning">Xóa</a> --}}
               </td>
-           
-            
-              
-
-            </tbody>
+            </tr>
             @endforeach
-          </table>
-        </div>
-        <!-- /.card-body -->
+          </tbody>
+        </table>
       </div>
-      <!-- /.card -->
-      <!-- /.card -->
+      <!-- /.card-body -->
     </div>
-    <!-- /.col -->
+    <!-- /.card -->
+    <!-- /.card -->
   </div>
+  <!-- /.col -->
+</div>
+
 @endsection
 @section("scripts")
 <script src="{{asset('admins/plugins/jquery/jquery.min.js')}}"></script>

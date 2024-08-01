@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\admins\BinhLuanController;
 use App\Http\Controllers\admins\DonHangController;
 use App\Http\Controllers\admins\PtttController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +40,7 @@ Route::middleware(['auth',CheckRoleAdminMiddleware::class])->prefix("admin")->na
     Route::resource('donhang', DonHangController::class);
     Route::resource("chucvus", ChucvuController::class); 
     Route::resource('danhmucs', DanhMucController::class);
+    Route::resource('binhluan',BinhLuanController::class);
 });
 Route::get('login', [AuthController::class, 'showFormLogin']);
 Route::post('login', [AuthController::class, 'login'])->name('login');

@@ -77,6 +77,10 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>QL tài khoản</p>
                 </a>
+                <a href="{{route("admin.binhluan.index")}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>QL bình luận</p>
+                </a>
               </li>
              
              

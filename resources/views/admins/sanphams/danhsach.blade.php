@@ -28,6 +28,31 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+          <form action="{{ route('admin.sanpham.index') }}" method="get">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm tên sản phẩm hoặc mô tả" value="{{ request('search') }}">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" name="danh_muc_id">
+                        <option value="">Tất cả danh mục</option>
+                        @foreach($danhmucs as $danhmuc)
+                            <option value="{{ $danhmuc->id }}" {{ request('danh_muc_id') == $danhmuc->id ? 'selected' : '' }}>{{ $danhmuc->ten_danh_muc }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" name="trang_thai">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="1" {{ request('trang_thai') == 1 ? 'selected' : '' }}>Kích hoạt</option>
+                        <option value="0" {{ request('trang_thai') == 0 ? 'selected' : '' }}>Không kích hoạt</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
           <a class="btn btn-primary" href="{{route("admin.sanpham.create")}}">Thêm mới sản phẩm</a>
           <table id="example2" class="table table-bordered table-hover">
             <thead>
@@ -46,27 +71,25 @@
             <tbody>
                 @foreach($data as $sanpham)
                 <tr>
-                    <td><input type="checkbox" value="{{$sanpham["id"]}}"></td>
+                    <td><input type="checkbox" value="{{$sanpham->id}}"></td>
                     <td>
-                      <p class="mb-0">{{ $sanpham["ten_san_pham"]}}</p>
-                      <span>Số lượng : <strong>{{ $sanpham["so_luong"] }}</strong></span>
-      
+                      <p class="mb-0">{{ $sanpham->ten_san_pham }}</p>
+                      <span>Số lượng : <strong>{{ $sanpham->so_luong }}</strong></span>
                     </td>
-                    <td>{{ $sanpham["mo_ta"] }}</td>
+                    <td>{{ $sanpham->mo_ta }}</td>
                     <td>
-                      <p class="mb-0">Giá sp : {{ number_format($sanpham["gia_san_pham"],0,".","."). " đ" }}</p>
-                      
+                      <p class="mb-0">Giá sp : {{ number_format($sanpham->gia_san_pham, 0, ".", ".") . " đ" }}</p>
                     </td>
-                    <td>{{ $sanpham["ngay_nhap"] }}</td>
-                    <td>{{ $sanpham["ten_danh_muc"] }}</td>
-                    <td>{{ $sanpham["trang_thai"]  ? "Kích hoạt" :  "Không kích hoạt" }}</td>
+                    <td>{{ $sanpham->ten_danh_muc }}</td>
+                    <td>{{ $sanpham->ngay_nhap }}</td>
+                    <td>{{ $sanpham->trang_thai ? "Kích hoạt" : "Không kích hoạt" }}</td>
                     <td>
-                    <div style="display:flex; column-gap:5px">   
-                        <a href="{{route("admin.sanpham.edit",$sanpham["id"])}}" class="btn btn-info">Sửa</a>
-                      <form action="{{route("admin.sanpham.destroy",$sanpham["id"])}}" onsubmit='return confirm("Bạn chắc chắn muốn xóa chứ")' method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <button class=" btn btn-warning">Xóa</button>
+                      <div style="display:flex; column-gap:5px">   
+                        <a href="{{ route("admin.sanpham.edit", $sanpham->id) }}" class="btn btn-info">Sửa</a>
+                        <form action="{{ route("admin.sanpham.destroy", $sanpham->id) }}" onsubmit='return confirm("Bạn chắc chắn muốn xóa chứ")' method="POST">
+                          @csrf
+                          @method("DELETE")
+                          <button class=" btn btn-warning">Xóa</button>
                       </form>
                     </div>
                       

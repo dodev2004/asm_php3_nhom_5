@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class DonHang extends Model
 {
     use HasFactory;
+    
     public function getList() {
         $donHang = DB::table('tb_don_hang')
         ->join('tb_phuong_thuc_thanh_toan', 'tb_don_hang.phuong_thuc_thanh_toan_id', '=', 'tb_phuong_thuc_thanh_toan.id')
