@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="name">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="name" name="so_dien_thoai" placeholder="Nhập họ và tên">
+                                            <input type="text" class="form-control" id="name" name="so_dien_thoai" placeholder="Nhập số điện thoại">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Địa chỉ</label>
