@@ -10,7 +10,7 @@
 @section("content")
 <div class="mb-4 pb-4"></div>
 <section class="my-account container">
-  <h2 class="page-title">Addresses</h2>
+  <h2 class="page-title">{{ $title}}</h2>
   <div class="row">
     @include("clients.blocks.acountaside")
     <div class="col-lg-9">

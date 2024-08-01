@@ -11,7 +11,7 @@
 @section("content")
 <div class="mb-4 pb-4"></div>
 <section class="my-account container">
-  <h2 class="page-title">Orders</h2>
+  <h2 class="page-title">{{ $title}}</h2>
   <div class="row">
     @include("clients.blocks.acountaside")
     <div class="col-lg-9">
@@ -33,7 +33,7 @@
               <td>{{ $item->ngay_dat}}</td>
               <td>{{ $item->trangthai->ten_trang_thai }}</td>
               <td>{{ number_format($item->tong_tien,0,".",".") }} for {{ count($item->sanphams)}} items</td>
-              <td><button class="btn btn-primary">VIEW</button></td>
+              <td><a href="{{route('client.donhangchitiet',$item->id)}}" class="btn btn-primary">VIEW</a></td>
             </tr>
             @endforeach
          

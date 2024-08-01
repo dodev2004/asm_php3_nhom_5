@@ -15,6 +15,7 @@ class DonHangController extends Controller
 {
     public function qldonhang(){
         if(Auth::check()){
+            $title = "Đơn hàng";
             $danhmucs = DanhMuc::query()->get();
             if (session()->exists('cart')) {
                 $giohangs = session()->get('cart',[]);
@@ -35,7 +36,7 @@ class DonHangController extends Controller
                 }
             }
             $donhang = DonHang::query()->with(["sanphams","pttt","trangthai"])->where("nguoi_dung_id",Auth::id())->get();             
-            return view("clients.taikhoans.donhang",compact("donhang","danhmucs",'giohangs'));
+            return view("clients.taikhoans.donhang",compact("donhang","danhmucs",'giohangs','title'));
           
           }
     }
@@ -102,6 +103,35 @@ class DonHangController extends Controller
     
     }
       
+   }
+   public function donhangchitiet($id){
+
+       if(Auth::check()){
+        $title = "Đơn hàng";
+            $danhmucs = DanhMuc::query()->get();
+            if (session()->exists('cart')) {
+                $giohangs = session()->get('cart',[]);
+            
+            } else {
+                if (Auth::check()) {
+                    // Nếu người dùng đã đăng nhập, lấy giỏ hàng từ cơ sở dữ liệu và lưu vào session
+                    $giohang = GioHang::query()
+                                ->with("sanphams")
+                                ->where('nguoi_dung_id', Auth::id())
+                                ->get();
+                    session()->put('cart', $giohang);
+                    $giohangs = $giohang;
+                } else {
+                    // Nếu người dùng chưa đăng nhập, tạo giỏ hàng trống
+                    session()->put('cart', []);
+                    $giohangs = [];
+                }
+            }
+            $donhang = DonHang::query()->with(["sanphams","pttt","trangthai"])->find($id);    
+           
+            return view("clients.taikhoans.donhangchitiet   ",compact("donhang","danhmucs",'giohangs','title'));
+          
+          }
    }
    
 }
