@@ -70,7 +70,7 @@
       <a href="forgot-password.html">Quên mật khẩu</a>
   </p>
   <p class="mb-0">
-      <a href="{{ route('register') }}" class="text-center">Đăng ký tài khoản mới </a>
+      {{-- <a href="{{ route('register') }}" class="text-center">Đăng ký tài khoản mới </a> --}}
   </p>
 </div>
 @endsection

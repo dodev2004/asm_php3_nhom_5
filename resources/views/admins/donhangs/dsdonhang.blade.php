@@ -29,7 +29,7 @@
               <th></th>
               <th>Mã đơn hàng</th>
               <th>Id người dùng</th>
-              <th>Ten nguoi nhan</th>
+              <th>Tên người nhận</th>
              
               <th>Email</th>
               <th>Số điện thoại</th>
@@ -66,7 +66,7 @@
               <td>{{$item->ten_trang_thai}}</td>
               
               <td>
-                <a href="{{route('donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                <a href="{{route('admin.donhang.edit',$item->id)}}" class="btn btn-info">Sửa</a>
                 {{-- <a href="" class="btn btn-warning">Xóa</a> --}}
               </td>
            

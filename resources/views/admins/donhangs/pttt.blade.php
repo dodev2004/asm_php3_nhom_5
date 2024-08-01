@@ -42,8 +42,8 @@
               </td>
 
               <td>
-                <a href="{{route('pttt.edit',$item->id)}}" class="btn btn-info">Sửa</a>
-                <a href="{{route('pttt.destroy',$item->id)}}" class="btn btn-warning">Xóa</a>
+                <a href="{{route('admin.pttt.edit',$item->id)}}" class="btn btn-info">Sửa</a>
+                <a href="{{route('admin.pttt.destroy',$item->id)}}" class="btn btn-warning">Xóa</a>
               </td>
             </tbody>
             @endforeach

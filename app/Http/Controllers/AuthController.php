@@ -26,7 +26,7 @@ public function login(LoginRequest $request)
    unset($credentials["mat_khau"]);
     if (Auth::attempt($credentials)) {
 // login thành công
-        return redirect()->route('home');
+return redirect()->route('adminhome');
     } else {
        //login thất bại
         return redirect()->back()

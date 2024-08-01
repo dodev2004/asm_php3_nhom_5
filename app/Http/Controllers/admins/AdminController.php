@@ -1,28 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\admins;
+namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use App\Models\DonHang;
 use Illuminate\Http\Request;
 
-class DonHangController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public $don_hang;
-    public function __construct()
-    {
-        $this->don_hang= new DonHang();
-    }
     public function index()
     {
-$dsDonHang= $this->don_hang->getList();
-$title = "Quản lý đơn hàng";
-$tablename = "Danh sách đơn hàng"; 
-return view('admins.donhangs.dsdonhang',compact('title','tablename','dsDonHang'));
-    //   dd('day la trang don hang');
+        return view('admins.adminhome');
     }
 
     /**
@@ -54,9 +44,7 @@ return view('admins.donhangs.dsdonhang',compact('title','tablename','dsDonHang')
      */
     public function edit(string $id)
     {
-        $title = "Sửa đơn hàng";
-        $donHang=$this->don_hang->getTTDonHang($id);
-        return view('admins.donhangs.updatedonhang',compact('title','donHang'));
+        //
     }
 
     /**
@@ -64,14 +52,7 @@ return view('admins.donhangs.dsdonhang',compact('title','tablename','dsDonHang')
      */
     public function update(Request $request, string $id)
     {
-        if($request->isMethod('PUT')){
-            $params = $request->except('_token', '_method');
-            
-            $this->don_hang->updateDonHang($id,$params);
-            return redirect()->route('admin.donhang.index');
-        }
-        // $params = $request->post();
-        // dd($params);
+        //
     }
 
     /**

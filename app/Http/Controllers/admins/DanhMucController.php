@@ -24,7 +24,7 @@ class DanhMucController extends Controller
             $listDanhMuc->where("ten_danh_muc","like","%".$request->get('search')."%");
             
         }
-        $listDanhMuc = $listDanhMuc->paginate(2);
+        $listDanhMuc = $listDanhMuc->paginate(5);
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách danh mục";
         // $listDanhMuc = DanhMuc::get();
@@ -55,7 +55,7 @@ class DanhMucController extends Controller
             }
             $params['hinh_anh'] = $filename;
             DanhMuc::create($params);
-            return redirect()->route('danhmucs.index')->with('success', 'Thêm danh mục thành công!');
+            return redirect()->route('admin.danhmucs.index')->with('success', 'Thêm danh mục thành công!');
         }
     }
 
@@ -97,7 +97,7 @@ class DanhMucController extends Controller
             //xử lý cập nhật thông tin
             //eloquent
             $danhMuc->update($params);
-            return redirect()->route('danhmucs.index')->with('success', 'Cập nhật danh mục thành công!');
+            return redirect()->route('admin.danhmucs.index')->with('success', 'Cập nhật danh mục thành công!');
 
             //querybulder
             // $this->danh_muc->updateCategory($id, $params);
@@ -116,7 +116,7 @@ class DanhMucController extends Controller
             if ($danhMuc->hinh_anh && Storage::disk('public')->exists($danhMuc->hinh_anh)) {
                         Storage::disk('public')->delete($danhMuc->hinh_anh);
                     }
-                    return redirect()->route('danhmucs.index')->with('success', 'Xóa danh mục thành công!');
+                    return redirect()->route('admin.danhmucs.index')->with('success', 'Xóa danh mục thành công!');
         }
     }
 }

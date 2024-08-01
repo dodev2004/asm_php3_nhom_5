@@ -27,19 +27,7 @@ class DanhSachDonHangSeeder extends Seeder
                 'phuong_thuc_thanh_toan_id'=>'1',	
                 'trang_thai_id'=>'1',
             ],
-            [
-                'ma_don_hang'=>'DH02',	
-                'nguoi_dung_id'=>'2',	
-                'ten_nguoi_nhan'=>'Nguyen van b',	
-                'email_nguoi_nhan'=>'vanhb@gmail.com',	
-                'so_dien_thoai_nguoi_nhan'=>'01999999',	
-                'dia_chi_nguoi_nhan'=>'Hà nội',	
-                'ngay_dat'=>'2024/06/15',	
-                'tong_tien'=>'200000',	
-                'ghi_chu'=>'aêa',	
-                'phuong_thuc_thanh_toan_id'=>'2',	
-                'trang_thai_id'=>'2',
-            ]
+            
         ]);
     }
 }

@@ -37,8 +37,8 @@
               <th>Mô tả</th>
               <th>Gía sản phẩm</th>
              
-              <th>Danh mục</th>
               <th>Ngày nhập</th>
+              <th>Danh mục</th>
               <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>

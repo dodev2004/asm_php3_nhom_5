@@ -9,6 +9,7 @@ use App\Http\Controllers\admins\SanPhamController;
 use App\Http\Controllers\admins\ChucVuController;
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Controllers\admins\TaiKhoanController;
+use App\Http\Controllers\admins\AdminController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckRoleAdminMiddleware;
@@ -55,6 +56,8 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get("/",function(){
     return redirect()->route("client.index");
 });
+
+Route::get('/adminhome', [AdminController::class, 'index'])->name('adminhome');
 Route::prefix('/')->name("client.")->group(function(){
    Route::get("/trang-chu",[HomeController::class,"index"])->name("index");
    Route::get("/san-pham-chi-tiet/{id}",[ClientSanPham::class,"sanphamchitiet"])->name("sanphamchitiet");   

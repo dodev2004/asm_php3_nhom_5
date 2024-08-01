@@ -13,7 +13,7 @@
 <div class="row">
     <!-- left column -->
      <div class="col-12">
-        <form action="{{route('pttt.update',$dsPttt->id)}}" method="POST">
+        <form action="{{route('admin.pttt.update',$dsPttt->id)}}" method="POST">
             @csrf
             @method('PUT')
         <div class="row">

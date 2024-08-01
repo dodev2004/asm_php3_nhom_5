@@ -19,7 +19,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Thông tin sản phẩm</h3>
+                        <h3 class="card-title">Thông tin tài khoản</h3>
                     </div>
                     <div class="card-body">
                             <div class="row">
@@ -37,22 +37,22 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="name">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="name" name="mat_khau" placeholder="Nhập họ và tên">
+                                            <input type="password" class="form-control" id="name" name="mat_khau" placeholder="Nhập mật khẩu">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Xác nhận mật khẩu</label>
-                                            <input type="password" class="form-control" id="name" name="xac_nhan_mk" placeholder="Nhập email tài khoản">
+                                            <input type="password" class="form-control" id="name" name="xac_nhan_mk" placeholder="Nhập lại mật khẩu">
                                         </div>
                                     </div> 
                                     
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="name">Số điện thoại</label>
-                                            <input type="text" class="form-control" id="name" name="so_dien_thoai" placeholder="Nhập họ và tên">
+                                            <input type="text" class="form-control" id="name" name="so_dien_thoai" placeholder="Nhập số điện thoại">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Địa chỉ</label>
-                                            <input type="text" class="form-control" id="name" name="dia_chi" placeholder="Nhập email tài khoản">
+                                            <input type="text" class="form-control" id="name" name="dia_chi" placeholder="Nhập địa chỉ">
                                         </div>
                                     </div>  
                                     <div class="row">
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Ngày sinh</label>
-                                            <input type="date" class="form-control" id="name" name="ngay_sinh" placeholder="Nhập email tài khoản">
+                                            <input type="date" class="form-control" id="name" name="ngay_sinh" placeholder="Nhập ngày sinh">
                                         </div>
                                     </div>  
                                     

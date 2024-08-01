@@ -48,6 +48,7 @@ class DonHang extends Model
         return $donHang;
        }
        public function updateDonHang($id,$ttdon){
+      
         DB::table('tb_don_hang')
         ->where('id', $id)
         ->update($ttdon);
