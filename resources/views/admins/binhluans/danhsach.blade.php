@@ -1,12 +1,10 @@
-
 @extends('layouts.admin')
 @section("title")
-{{$title}}
+  {{ $title }}
 @endsection
 @section('head')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <title>@yield('title')</title>
   <link rel="stylesheet" href="{{asset('admins/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('admins/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -17,54 +15,79 @@
 @endsection
 @section("content")
 <div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">{{$tablename}}</h3>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <form action="{{ route('admin.pttt.index') }}" method="get">
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <input type="text" class="form-control" name="search" placeholder="Tìm kiếm phương thức thanh toán" value="{{ request('search') }}">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+            @session('message')
+            <div class="alert alert-success">
+                        {{session('message')}}
             </div>
-            <button class="btn btn-primary">Tìm kiếm</button>
-          </div>
+            @endsession
+            
+          <h3 class="card-title">{{ $tablename }}</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <form action="{{ route('admin.binhluan.index') }}" method="get">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm">
+                </div>
+                <button class="btn btn-primary">Tìm kiếm</button>
+            </div>
         </form>
-        <a class="btn btn-primary" href="{{route('admin.pttt.create')}}">Thêm mới phương thức thanh toán</a>
-        <table id="example2" class="table table-bordered table-hover">
-          <thead>
+        
+         
+          {{-- <a class="btn btn-primary" href="{{route("admin.binh.create")}}">Thêm mới tài khoản</a> --}}
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
             <tr>
               <th></th>
-              <th>Tên phương thức</th>
+              <th>Tài khoản</th>
+              <th>Số sản phẩm đã bình luận</th>
+              <th>Số lượng bình luận</th>
+              {{-- <th>Trạng thái</th> --}}
               <th>Hành động</th>
             </tr>
-          </thead>
-          <tbody>
-            @foreach ($dsPttt as $index=>$item)
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  <p class="mb-0">{{$item->ten_phuong_thuc}}</p>
-                </td>
-                <td>
-                  <a href="{{route('admin.pttt.edit', $item->id)}}" class="btn btn-info">Sửa</a>
-                  {{-- <a href="{{route('admin.pttt.destroy', $item->id)}}" class="btn btn-warning">Xóa</a> --}}
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+                {{-- {{$comments}} --}}
+                @foreach($comments as $index => $item)
+                <tr>
+                    <td>{{$index +1}}</td>
+                    <td>
+                        {{ $item->ho_ten}}
+         
+                       </td>
+                    <td>
+                     {{ $item->so_luong_san_pham}}
+      
+                    </td>
+                    <td>{{ $item->so_luong_binh_luan }}</td>
+                 
+                    {{-- <td>{{ $item->ten_chuc_vu }}</td> --}}
+                    {{-- <td class="{{ $item->trang_thai === 1  ? "text-success" :  "text-danger" }}">{{ $item->trang_thai === 1  ? "Hiển thị" :  "Ẩn" }}</td> --}}
+                     <td>
+                  
+                        <div style="display:flex; column-gap:5px ;justify-content: center; ">   
+                            <a href="{{ route('admin.binhluan.show',$item->tai_khoan_id) }}" class="btn btn-info">Xem</a>
+                          
+                        </div> </td>
+                     
+                   
+                </tr>
+             @endforeach
+            </tbody>
+          
+          </table>
+        </div>
+        <!-- /.card-body -->
       </div>
-      <!-- /.card-body -->
+      <!-- /.card -->
+      <!-- /.card -->
     </div>
-    <!-- /.card -->
-    <!-- /.card -->
+    <!-- /.col -->
   </div>
-  <!-- /.col -->
-</div>
-
 @endsection
 @section("scripts")
 <script src="{{asset('admins/plugins/jquery/jquery.min.js')}}"></script>

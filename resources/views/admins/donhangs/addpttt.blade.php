@@ -13,7 +13,7 @@
 <div class="row">
     <!-- left column -->
      <div class="col-12">
-        <form action="{{route('pttt.store')}}" method="POST">
+        <form action="{{route('admin.pttt.store')}}" method="POST">
             @csrf
         <div class="row">
             <div class="col-md-9">

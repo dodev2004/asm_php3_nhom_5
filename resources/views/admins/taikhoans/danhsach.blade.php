@@ -25,6 +25,14 @@
             @endsession
             
           <h3 class="card-title">{{ $tablename }}</h3>
+          <form action="{{ route('admin.taikhoan.index') }}" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="search" placeholder="Tìm kiếm tài khoản..." value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -54,7 +62,7 @@
                      {{ $taikhoan->so_dien_thoai }}
                       
                     </td>
-                    <td>{{ $taikhoan->ten_chuc_vu }}</td>
+                    <td>{{ $taikhoan->chucvu->ten_chuc_vu }}</td>
                     <td>{{ $taikhoan->trang_thai  ? "Kích hoạt" :  "Không kích hoạt" }}</td>
                     <td>
                     <div style="display:flex; column-gap:5px">   

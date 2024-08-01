@@ -72,5 +72,8 @@ class TaiKhoan extends Authenticatable
      {
          return $this->mat_khau;
      }
+     public function chucvu(){
+        return $this->hasOne(ChucVu::class,'id','chuc_vu_id');
+     }
 
 }

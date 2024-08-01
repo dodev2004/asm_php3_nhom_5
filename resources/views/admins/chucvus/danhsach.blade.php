@@ -14,45 +14,53 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Danh sách chức vụ</h3>
-            </div>
-            @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Danh sách chức vụ</h3>
+        </div>
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
         @endif
         <div class="card-body">
+            <form action="{{ route('admin.chucvus.index') }}" method="get">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="search" placeholder="Tìm kiếm chức vụ">
+                    </div>
+                    <button class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
             <a class="btn btn-primary" href="{{ route('admin.chucvus.create') }}">Thêm mới chức vụ</a>
-            
             <table id="example2" class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                    <th>Tên chức vụ</th>
-                    <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($listChucVu as $chucVu)
-                <tr>
-                    <td>{{$chucVu->ten_chuc_vu}}</td>
-                    <td>
-                        <a href="{{ route('admin.chucvus.edit', $chucVu->id) }}" class="btn btn-info">Sửa</a>
-                        <form action="{{ route('admin.chucvus.destroy', $chucVu->id) }}" method="POST" class="d-inline" onSubmit="return confirm('Bạn có muốn xóa không')">
-                            
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Xóa</button>
-                        </form>
-                        
-                    </td>
-                </tr>
-                @endforeach
-              </tbody>
+                <thead>
+                    <tr>
+                        <th>Tên chức vụ</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($listChucVu as $chucVu)
+                    <tr>
+                        <td>{{ $chucVu->ten_chuc_vu }}</td>
+                        <td>
+                            <a href="{{ route('admin.chucvus.edit', $chucVu->id) }}" class="btn btn-info">Sửa</a>
+                            <form action="{{ route('admin.chucvus.destroy', $chucVu->id) }}" method="POST" class="d-inline" onSubmit="return confirm('Bạn có muốn xóa không')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
 
 @endsection
 

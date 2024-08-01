@@ -72,4 +72,53 @@ class HomeController extends Controller
             }
         }
     }
+    public function getspbyid($id)
+    {
+        $title = "Danh mục sản phẩm";
+    
+        $danhmucs = DanhMuc::query()->get();
+        $dmbyid = DanhMuc::query()->where('id', $id)->first();
+        $sp_danh_muc = SanPham::query()
+        ->with('danhmucs')
+        ->where('danh_muc_id', $id)
+        ->orderBy('luot_xem', 'asc')
+        ->paginate(1);
+    
+    // dd($sp_danh_muc->items());
+    
+        if (session()->exists('cart')) {
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart');
+        } else {
+            session()->put('cart', []);
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart', []);
+        }
+    
+        return view('clients.sanpham.sanphamdanhmuc', compact('title', 'danhmucs', 'giohangs', 'dmbyid', 'sp_danh_muc'));
+    }
+    public function search(Request $request)
+    {
+        $title = "Kết quả tìm kiếm";
+        $danhmucs = DanhMuc::query()->get();
+        $query = $request->input('search-keyword');
+
+        $sp_danh_muc = SanPham::query()
+            ->where('ten_san_pham', 'like', "%{$query}%")
+            ->orderBy('ngay_nhap', 'desc')
+            ->paginate(12);
+
+        if (session()->exists('cart')) {
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart');
+        } else {
+            session()->put('cart', []);
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart', []);
+        }
+
+        return view('clients.sanpham.timkiemsanpham', compact('title', 'danhmucs', 'giohangs', 'sp_danh_muc'));
+    }
+
+    
 }
