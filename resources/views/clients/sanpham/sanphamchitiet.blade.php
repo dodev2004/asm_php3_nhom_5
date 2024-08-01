@@ -362,7 +362,7 @@
                                         <div class="qty-control__reduce text-start">-</div>
                                         <div class="qty-control__increase text-end">+</div>
                                     </div><!-- .qty-control -->
-                                    <span class="cart-drawer-item__price money price">${price} &#8363;</span>
+                                    <span data-price="${price}" class="cart-drawer-item__price money price">${price} &#8363;</span>
                                     </div>
                                 </div>
 
@@ -384,12 +384,11 @@
                                     })
                                     console.log($items);
                                     $items.forEach(function($item) {
-                                        $total += parseFloat($item
-                                            .textContent);
+                                        $total += parseFloat($item.dataset.price);
                                     });
                                     const totalprice = document.querySelector(
                                         ".cart-subtotal");
-                                    totalprice.innerHTML = $total + " &#8363;"
+                                    totalprice.innerHTML = formatCurrency($total) 
                                     document.querySelector(".cart-drawer").classList
                                         .add('aside_visible');
                                     document.querySelector(".page-overlay")
@@ -415,7 +414,7 @@
                                   
                                     const totalprice = document.querySelector(
                                         ".cart-subtotal");
-                                    totalprice.innerHTML = formatCurrency($total) + "&#8363;"
+                                    totalprice.innerHTML = formatCurrency($total)
                                     document.querySelector(".cart-drawer").classList
                                         .add('aside_visible');
                                     document.querySelector(".page-overlay")

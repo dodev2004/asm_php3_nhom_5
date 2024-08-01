@@ -60,6 +60,9 @@ class SanPhamController extends Controller
                         "so_luong" => $giohang->sanphams[0]->pivot->so_luong + $data["so_luong"],
                         "gia_san_pham" => $giohang->sanphams[0]->gia_san_pham
                     ];
+                    if($giohang->sanphams[0]->so_luong < $update["so_luong"]){
+                        return response()->json(["error" => "Số lượng đã quá giới hạn mức cho phép"]);
+                    }
                     $giohang->sanphams()->updateExistingPivot($data["san_pham_id"], [
                         "so_luong" => $update["so_luong"]
                     ]);
@@ -80,8 +83,7 @@ class SanPhamController extends Controller
         
         $giohang = $this->giohang->themSpGioHang($data);
         $giohangs = GioHang::query()->where("nguoi_dung_id", Auth::id())->get();
-       
-      
+
         if (session()->exists('cart')) {
             session()->put('cart', $giohangs);
            

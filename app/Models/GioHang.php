@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use App\Models\SanPham;
 class GioHang extends Model
 {
     use HasFactory;
@@ -16,9 +17,16 @@ class GioHang extends Model
     public function themSpGioHang($data){
         DB::beginTransaction();
       try{
+        $sanpham = SanPham::query()->find($data["san_pham_id"]);
+        if($sanpham){
+          if($data["so_luong"] > $sanpham->so_luong){
+            return false;
+          }
+        }
         $gio_hang = self::query()->create([
           "nguoi_dung_id" => $data["nguoi_dung_id"],    
         ]);
+
         $gio_hang->sanphams()->attach($data["san_pham_id"],["so_luong"=>$data["so_luong"]]);
         DB::commit();
         return $gio_hang ;

@@ -54,7 +54,7 @@
           </div>
           <div class="order-info__item">
             <label>Total</label>
-            <span>{{number_format($donhang->tong_tien,0,".",".")}}</span>
+            <span>{{number_format($donhang->tong_tien,0,".",".")}} &#8363;</span>
           </div>
           <div class="order-info__item">
             <label>Paymetn Method</label>
@@ -78,7 +78,7 @@
                     {{$item->ten_san_pham}} x{{$item->pivot->so_luong}}
                   </td>
                   <td>
-                   {{number_format($item->gia_san_pham *$item->pivot->so_luong ,"0",".",".")}}
+                   {{number_format($item->gia_san_pham *$item->pivot->so_luong ,"0",".",".")}} &#8363;
                   </td>
                 </tr>
                 @endforeach 
@@ -95,7 +95,7 @@
                 @endphp
                 <tr>
                   <th>SUBTOTAL</th>
-                  <td>{{ number_format($total,0,".",".") }}</td>
+                  <td>{{ number_format($total,0,".",".") }} &#8363;</td>
                 </tr>
                 <tr>
                   <th>SHIPPING</th>
@@ -103,7 +103,7 @@
                 </tr>
                 <tr>
                   <th>TOTAL</th>
-                  <td>{{ number_format($total,0,".",".") }}</td>
+                  <td>{{ number_format($total,0,".",".") }} &#8363;</td>
                 </tr>
               </tbody>
             </table>

@@ -106,7 +106,7 @@
                         x {{ $giohang->sanphams[0]->pivot->so_luong}}
                       </td>
                       <td>
-                        {{ number_format($giohang->sanphams[0]->gia_san_pham,0,".",".") }} đ
+                        {{ number_format($giohang->sanphams[0]->gia_san_pham,0,".",".") }} &#8363;
                       </td>
                     </tr>
                     @endforeach
@@ -117,7 +117,7 @@
                   <tbody>
                     <tr>
                         <th>Thành tiền</th>
-                        <td>{{ number_format($total,0,".",".")}} đ</td>
+                        <td>{{ number_format($total,0,".",".")}} &#8363;</td>
                     </tr>
                     <tr>
                       <th>SHIPPING</th>
