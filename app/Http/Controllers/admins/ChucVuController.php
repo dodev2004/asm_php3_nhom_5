@@ -37,7 +37,7 @@ class ChucVuController extends Controller
         if ($request->isMethod('POST')) {
             $params = $request->except('_token');
             ChucVu::create($params);
-            return redirect()->route('chucvus.index')->with('success', 'Thêm chức vụ thành công!');
+            return redirect()->route('admin.chucvus.index')->with('success', 'Thêm chức vụ thành công!');
         }
     }
     public function edit(string $id)
@@ -52,7 +52,7 @@ class ChucVuController extends Controller
             $params = $request->except('_token', '_method');
             $chucVu = ChucVu::findOrFail($id);
             $chucVu->update($params);
-            return redirect()->route('chucvus.index')->with('success', 'Cập nhật thành công!');
+            return redirect()->route('admin.chucvus.index')->with('success', 'Cập nhật thành công!');
         }
     }
     
@@ -63,7 +63,7 @@ class ChucVuController extends Controller
             $chucVu = ChucVu::query()->findOrFail($id);
             $chucVu->delete();
             
-                    return redirect()->route('chucvus.index')->with('success', 'Xóa thành công!');
+                    return redirect()->route('admin.chucvus.index')->with('success', 'Xóa thành công!');
         }
     }
     
