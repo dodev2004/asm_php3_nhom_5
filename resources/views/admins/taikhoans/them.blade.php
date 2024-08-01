@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Ngày sinh</label>
-                                            <input type="date" class="form-control" id="name" name="ngay_sinh" placeholder="Nhập email tài khoản">
+                                            <input type="date" class="form-control" id="name" name="ngay_sinh" placeholder="Nhập ngày sinh">
                                         </div>
                                     </div>  
                                     
