@@ -23,6 +23,8 @@ class SanPhamController extends Controller
     public function SanPhamChiTiet(Request $request, $id){
         $title = "Chi tiết sản phẩm";
         $sanPham = SanPham::query()->with("danhmucs")->find($id);
+        $sanPham->luot_xem = ++$sanPham->luot_xem;
+        $sanPham->save();
         $danhmucs = DanhMuc::query()->get();
         $binhluans = $this->binhLuan->getBinhLuanBySp($id);
         if (session()->exists('cart')) {
