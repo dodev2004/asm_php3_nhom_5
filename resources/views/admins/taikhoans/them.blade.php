@@ -37,7 +37,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="name">Mật khẩu</label>
-                                            <input type="password" class="form-control" id="name" name="mat_khau" placeholder="Nhập họ và tên">
+                                            <input type="password" class="form-control" id="name" name="mat_khau" placeholder="Nhập mật khẩu">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Xác nhận mật khẩu</label>
