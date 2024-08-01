@@ -41,7 +41,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="name">Xác nhận mật khẩu</label>
-                                            <input type="password" class="form-control" id="name" name="xac_nhan_mk" placeholder="Nhập email tài khoản">
+                                            <input type="password" class="form-control" id="name" name="xac_nhan_mk" placeholder="Nhập lại mật khẩu">
                                         </div>
                                     </div> 
                                     
