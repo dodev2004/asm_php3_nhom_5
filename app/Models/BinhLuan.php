@@ -23,6 +23,7 @@ class BinhLuan extends Model
         ->join("tb_san_pham","tb_binh_luan.san_pham_id","=","tb_san_pham.id")
         ->select(["tb_tai_khoan.ho_ten as ho_ten","tb_tai_khoan.anh_dai_dien as anh_dai_dien","tb_binh_luan.noi_dung as noi_dung","tb_binh_luan.thoi_gian as ngay_dang"])
         ->where("tb_binh_luan.san_pham_id","=",$id)
+        ->where("tb_binh_luan.trang_thai","=" ,1)
         ->get();
         ;
     }

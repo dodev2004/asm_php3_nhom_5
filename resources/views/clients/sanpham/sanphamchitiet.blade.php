@@ -271,7 +271,7 @@
                     @foreach ($sanPhamlq as $sp)
                         <div class="swiper-slide product-card">
                             <div class="pc__img-wrapper">
-                                <a href="product1_simple.html">
+                                <a href="{{route('client.sanphamchitiet',$sp->id)}}">
                                     <img loading="lazy" src="{{ asset('storage/uploads/sanphams/' . $sp->hinh_anh)}}"
                                         width="330" height="400" alt="Cropped Faux leather Jacket" class="pc__img">
                                     <img loading="lazy" src="../images/products/product_3-1.jpg" width="330"
