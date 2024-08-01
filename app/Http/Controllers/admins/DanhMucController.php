@@ -27,6 +27,7 @@ class DanhMucController extends Controller
         $listDanhMuc = $listDanhMuc->paginate(2);
         $title = "Quản lý sản phẩm - danh sách sản phẩm";
         $tablename = "Danh sách danh mục";
+        // $listDanhMuc = DanhMuc::get();
         return view('admins.danhmucs.danhsach', compact('title', 'listDanhMuc'));
     }
     public function create()
@@ -84,6 +85,7 @@ class DanhMucController extends Controller
             $danhMuc = DanhMuc::findOrFail($id);
 
             if ($request->hasFile('hinh_anh')) {
+                // nếu có đẩy hình ảnh mới thì xóa ảnh cũ và lấy ảnh mới để thêm vào dữ liệu DB
                 if ($danhMuc->hinh_anh) {
                     Storage::disk('public')->delete($danhMuc->hinh_anh);
                 }
@@ -91,8 +93,14 @@ class DanhMucController extends Controller
             } else {
                 $params['hinh_anh'] = $danhMuc->hinh_anh;
             }
+
+            //xử lý cập nhật thông tin
+            //eloquent
             $danhMuc->update($params);
-            return redirect()->route('danhmucs.index')->with('success', 'Cập nhật danh mục thành công!');           // $this->danh_muc->updateCategory($id, $params);
+            return redirect()->route('danhmucs.index')->with('success', 'Cập nhật danh mục thành công!');
+
+            //querybulder
+            // $this->danh_muc->updateCategory($id, $params);
         }
     }
 
