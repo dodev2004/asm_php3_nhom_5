@@ -72,6 +72,7 @@ Route::prefix('/')->name("client.")->group(function(){
    Route::get("/client/qlDonHang/",[ClientDonHang::class,"qldonhang"])->name("qldonhang");
    Route::get("/client/qlDonHang/{id}",[ClientDonHang::class,"donhangchitiet"])->name("donhangchitiet");
    Route::get("/client/danh-muc/{id}",[HomeController::class,"getspbyid"])->name("danhmucsanpham");
+   Route::get('/tim-kiem', [HomeController::class, 'search'])->name('search');
 });
 Route::post("/client/login",[HomeController::class,"login"])->name("client.login");
 Route::post("/client/register",[HomeController::class,"register"])->name("client.register");

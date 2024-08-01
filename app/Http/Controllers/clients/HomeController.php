@@ -97,6 +97,28 @@ class HomeController extends Controller
     
         return view('clients.sanpham.sanphamdanhmuc', compact('title', 'danhmucs', 'giohangs', 'dmbyid', 'sp_danh_muc'));
     }
-    
+    public function search(Request $request)
+    {
+        $title = "Kết quả tìm kiếm";
+        $danhmucs = DanhMuc::query()->get();
+        $query = $request->input('search-keyword');
+
+        $sp_danh_muc = SanPham::query()
+            ->where('ten_san_pham', 'like', "%{$query}%")
+            ->orderBy('ngay_nhap', 'desc')
+            ->paginate(12);
+
+        if (session()->exists('cart')) {
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart');
+        } else {
+            session()->put('cart', []);
+            Auth::check() ? session()->put('cart', GioHang::query()->with("sanphams")->where('nguoi_dung_id', Auth::id())->get()) : [];
+            $giohangs = session()->get('cart', []);
+        }
+
+        return view('clients.sanpham.timkiemsanpham', compact('title', 'danhmucs', 'giohangs', 'sp_danh_muc'));
+    }
+
     
 }
