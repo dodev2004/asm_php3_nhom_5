@@ -117,19 +117,33 @@
                   <tbody>
                     <tr>
                         <th>Thành tiền</th>
-                        <td>{{ number_format($total,0,".",".")}} &#8363;</td>
+                        <td>{{ number_format($subtotal,0,".",".")}} &#8363;</td>
                     </tr>
                     <tr>
                       <th>SHIPPING</th>
                       <td>Free shipping</td>
                     </tr>
+                    @session('coupon')
+                    <tr class="coupon_detail-name">
+                      <th>Mã giảm giá</th>
+                      <td>
+                        {{ $ten_ma_giam_gia }}
+                      </td>       
+                    </tr>
+                    <tr class="coupon-price">
+                      <th></th>
+                      <td>
+                          - {{ number_format($duocgiam,0,".",".")}}
+                      </td>
+                    <tr>
+                    @endsession
                     <tr>
                       <th>Vocher</th>
                       <td>#</td>
                     </tr>
                     <tr>
                       <th>Tổng tiền</th>
-                      <td>{{ number_format($total,0,".",".")}}  
+                      <td>{{ number_format($total,0,".",".")}}    
                         <input type="hidden" name="tong_tien" value="{{$total}}">
                       </td>
                     </tr>

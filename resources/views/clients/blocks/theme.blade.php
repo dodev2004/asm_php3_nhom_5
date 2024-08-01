@@ -160,13 +160,15 @@
                          subtotal.setAttribute("data-subtotal",price *  $number.value)
                          const lists = Array.from(document.querySelectorAll(".cart_list"));
                         const subtotal_check = document.querySelector(".cart_subtotal");
+                        subtotal_check.seet
                         const cart_total = document.querySelector('.cart_total');
                         let  total= lists.reduce(function(init,currency){
                           const price = parseFloat(currency.querySelector(".shopping-cart__subtotal").dataset.subtotal);
                           console.log(currency);
                         return parseFloat(init) + price
                         },0)
-                        
+                        subtotal_check.setAttribute("data-price",total);
+                        cart_total.setAttribute("data-price",total);
                         subtotal_check.innerHTML = formatCurrency(total) 
                         cart_total.innerHTML =formatCurrency(total);
                         debounceUpdateQuantity($number);
