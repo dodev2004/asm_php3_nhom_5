@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\clients;
 
 use App\Http\Controllers\Controller;
+use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,11 @@ class BinhLuanController extends Controller
            $data = $request->all();
            $data["tai_khoan_id"] = Auth::id();
            $data["thoi_gian"] = date('Y-m-d H:i:s', time());
-        //    DB::table("tb_binh_luan")->insert($data); 
-           return response()->json(["success"=> "Bình luận thành công"]);
+          $binhluanb = BinhLuan::query()->create($data);
+           $binhluanb = $binhluanb->toArray();
+           $binhluanb["ho_ten"] = Auth::user()->ho_ten;
+          $binhluanb["hinh_anh"] = Auth::user()->anh_dai_dien;
+           return response()->json(["success"=> "Bình luận thành công","data"=> $binhluanb]);
         }
         else {
             return response()->json(["error"=> "Bình luận không thành công"]);

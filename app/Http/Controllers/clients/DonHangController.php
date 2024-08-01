@@ -44,12 +44,15 @@ class DonHangController extends Controller
       if(Auth::check()){
          $data = $request->except("_token");
          $data["nguoi_dung_id"] = Auth::id();
-      
+     
          $data["ngay_dat"] = date("Y-m-d",time());
          $data["trang_thai_id"] = "1";
          $carts = session()->get('cart',[])->toArray();
+         foreach(session()->get('cart',[]) as $cart){
+            $cart->sanphams[0]->so_luong =  $cart->sanphams[0]->so_luong - $cart->sanphams[0]->pivot->so_luong;
+            $cart->sanphams[0]->save();
+         }
          if(count($carts) > 0){
-            
             $donhang = DonHang::query()->create($data);
             $donhang->ma_don_hang = time() + $donhang->id;
             $donhang->save();

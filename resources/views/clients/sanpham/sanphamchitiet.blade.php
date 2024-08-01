@@ -362,7 +362,7 @@
                                         <div class="qty-control__reduce text-start">-</div>
                                         <div class="qty-control__increase text-end">+</div>
                                     </div><!-- .qty-control -->
-                                    <span class="cart-drawer-item__price money price">${price} &#8363;</span>
+                                    <span data-price="${price}" class="cart-drawer-item__price money price">${price} &#8363;</span>
                                     </div>
                                 </div>
 
@@ -384,12 +384,11 @@
                                     })
                                     console.log($items);
                                     $items.forEach(function($item) {
-                                        $total += parseFloat($item
-                                            .textContent);
+                                        $total += parseFloat($item.dataset.price);
                                     });
                                     const totalprice = document.querySelector(
                                         ".cart-subtotal");
-                                    totalprice.innerHTML = $total + " &#8363;"
+                                    totalprice.innerHTML = formatCurrency($total) 
                                     document.querySelector(".cart-drawer").classList
                                         .add('aside_visible');
                                     document.querySelector(".page-overlay")
@@ -415,7 +414,7 @@
                                   
                                     const totalprice = document.querySelector(
                                         ".cart-subtotal");
-                                    totalprice.innerHTML = formatCurrency($total) + "&#8363;"
+                                    totalprice.innerHTML = formatCurrency($total)
                                     document.querySelector(".cart-drawer").classList
                                         .add('aside_visible');
                                     document.querySelector(".page-overlay")
@@ -460,6 +459,7 @@
                 },
                 data: data,
                 success: function(res) {
+                    console.log(res);
                     if (res.success) {
                         swal({
                         title: res.success,
@@ -467,9 +467,48 @@
                         icon: "success",
                         button: "Tiếp tục!",
                     })
-                    .then(function(res){
-                       if(res){
-                        
+                    .then(function(response){
+                       if(response){
+                            const binhluan = document.querySelector(".product-single__reviews-list");
+                            let hinh_anh = "";
+                            if(res.data.hinh_anh) {
+                                hinh_anh = location.origin + "/storage/uploads/taikhoan/" + res.data.hinh_anh; 
+                            } 
+
+                            const html = `
+                             <div class="product-single__reviews-item">
+            <div class="customer-avatar">
+                <img loading="lazy" src="${hinh_anh || 'https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg' }" alt="">
+            </div>
+            <div class="customer-review" style="width:100%">
+                <div class="customer-name">
+                    <h6>${res.data.ho_ten}</h6>
+                    <div class="reviews-group d-flex">
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_star" />
+                        </svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_star" />
+                        </svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_star" />
+                        </svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_star" />
+                        </svg>
+                        <svg class="review-star" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                            <use href="#icon_star" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="review-date">${res.data.thoi_gian}</div>
+                <div class="review-text">
+                    <p>${res.data.noi_dung}</p>
+                </div>
+            </div>
+        </div>
+                            `
+                            binhluan.insertAdjacentHTML('beforeend', html)
                        }
                     })
                     }

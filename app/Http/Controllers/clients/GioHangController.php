@@ -49,6 +49,10 @@ class GioHangController extends Controller
         $carts = session()->get('cart',[]); 
         if($giohang){
             $giohang->sanphams[0]->pivot->so_luong = $request->so_luong;
+            $so_luong = $giohang->sanphams[0]->so_luong;
+            if($so_luong < $request->so_luong){
+                return response()->json(["error"=>"Số lượng sản phẩm không hợp lệ"]);
+            }
             $giohang->sanphams[0]->pivot->save();
             foreach($carts as $index => $cart){
                 if($cart->id == $id){
